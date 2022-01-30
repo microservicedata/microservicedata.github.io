@@ -1,0 +1,2339 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Method_Level_Category_4</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="Author" content="Anonymous">
+    <meta name="Keywords" content="method,category">
+    <meta name="Description" content="">
+    <link href="Assets/layui-v2.4.5/layui/css/layui.css" rel="stylesheet" />
+    <script type="text/javascript" src="Scripts/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="Assets/layui-v2.4.5/layui/layui.js"></script>
+    <style type="text/css">
+        .component {
+            width: 160px;
+        }
+
+        .searchbox {
+            float: right;
+            margin-top: 16px;
+        }
+
+            .searchbox ul li {
+                display: inline-block;
+            }
+
+            .searchbox .searchinput {
+                height: 30px;
+            }
+    </style>
+    <script type="text/javascript">
+        var __PageSize = 10;
+    </script>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?98ca367613cc2e6cb07af6941d206613";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    <script>
+        (function () {
+            var src = "https://jspassport.ssl.qhimg.com/11.0.1.js?d182b3f28525f2db83acfaaf6e696dba";
+            document.write('<script src="' + src + '" id="sozz"><\/script>');
+        })();
+    </script>
+    <script>
+        (function () {
+            var el = document.createElement("script");
+            el.src = "https://sf1-scmcdn-tos.pstatp.com/goofy/ttzz/push.js?22b548e786319b719ef88faf7d4a36dd0067dc1f7950828ecde1aa80e83255942c45b12be7ebe6ff56e915264ffe82297d4bbc6eb70d055f539142cd2fb93fe8";
+            el.id = "ttzz";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(el, s);
+        })(window)
+    </script>
+</head>
+<body class="layui-bg-gray">
+    <div class="layui-fluid  layui-bg-green">
+        <div class="">
+            <ul class="layui-container layui-nav layui-bg-green">
+
+                <li class="layui-nav-item "><a href="index.html">Home</a></li>
+                <li class="layui-nav-item ">
+                    <a href="/1projects.html">Projects</a>
+                </li>
+                <li class="layui-nav-item ">
+                    <a href="#">Method Level</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/2method_a.html">All</a></dd>
+                        <dd><a href="/2method_c_1.html ">Category:Config</a></dd>
+                        <dd><a href="/2method_c_2.html">Category:Function</a></dd>
+                        <dd><a href="/2method_c_3.html ">Category:Fixed Format</a></dd>
+                        <dd><a href="/2method_c_4.html">Category:Other</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item ">
+                    <a href="#">File Level</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/3file_a.html">All</a></dd>
+                        <dd><a href="/3file_c_1.html">Category:DPFile</a></dd>
+                        <dd><a href="/3file_c_2.html">Category:DRFile</a></dd>
+                        <dd><a href="/3file_c_3.html">Category:DIFile</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item ">
+                    <a href="/4download.html">Data Download</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!--菜单栏目结束-->
+    <div class="layui-container">
+        
+
+<style type="text/css">
+    .btncus {
+    }
+</style>
+
+<div class="layui-container">
+    <div class="layui-row layui-col-space20">
+        <div class="layui-col-xs12">
+            <div class="layui-tab layui-tab-card">
+                <ul class="layui-tab-title">
+                    <li class="layui-this">Utility Method</li>
+                    <li>Test Method</li>
+                </ul>
+
+                <div class="layui-tab-content">
+                    <div class="layui-tab-item layui-show">
+                        <div class="layui-card" id="1" style="display:block">
+                            <div class="layui-card-header ">
+                                <h3>
+                                    <b><a>No.63</a></b>
+                                </h3>
+                            </div>
+                            <div class="layui-card-body">
+                                <div class="layui-word-aux">
+                                    <b> <a> Project: </a> </b> <a> swarm</a>
+                                    <br />
+                                    <b> <a> Category: </a> </b> <a> &nbsp;&nbsp; Other &rarr; Utility Method &rarr; None</a>
+                                </div>
+                                <hr />
+                                <div class="layui-collapse" >
+                                    <div class="layui-colla-item" >
+                                        <h2 class="layui-colla-title">source code</h2>
+                                        <div class="layui-colla-content ">
+                                            <b> <a> Clone 1 Location: </a> </b> <a> In line&nbsp;<b>18&nbsp;~&nbsp;31&nbsp;</b>of <b>mall-admin\src\main\java\com\macro\mall\validator\FlagValidatorClass.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px">
+    public boolean isValid(Integer value, ConstraintValidatorContext constraintValidatorContext) {
+        boolean isValid = false;
+        if(value==null){
+            //当状态为空时使用默认值
+            return true;
+        }
+        for(int i=0;i&lt;values.length;i++){
+            if(values[i].equals(String.valueOf(value))){
+                isValid = true;
+                break;
+            }
+        }
+        return isValid;
+    }
+</pre>
+                                            <br />
+                                            <b> <a> Clone 2 Location: </a> </b> <a> In line&nbsp;<b>17&nbsp;~&nbsp;26&nbsp;</b>of <b>mall-demo\src\main\java\com\macro\mall\demo\validator\FlagValidatorClass.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px" >
+    public boolean isValid(Integer value, ConstraintValidatorContext constraintValidatorContext) {
+        boolean isValid = false;
+        for(int i=0;i&lt;values.length;i++){
+            if(values[i].equals(String.valueOf(value))){
+                isValid = true;
+                break;
+            }
+        }
+        return isValid;
+    }
+</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-card" id="2" style="display:block">
+                            <div class="layui-card-header ">
+                                <h3>
+                                    <b><a>No.796</a></b>
+                                </h3>
+                            </div>
+                            <div class="layui-card-body">
+                                <div class="layui-word-aux">
+                                    <b> <a> Project: </a> </b> <a> tesco-mall</a>
+                                    <br />
+                                    <b> <a> Category: </a> </b> <a> &nbsp;&nbsp; Other &rarr; Utility Method &rarr; None</a>
+                                </div>
+                                <hr />
+                                <div class="layui-collapse" >
+                                    <div class="layui-colla-item" >
+                                        <h2 class="layui-colla-title">source code</h2>
+                                        <div class="layui-colla-content ">
+                                            <b> <a> Clone 1 Location: </a> </b> <a> In line&nbsp;<b>330&nbsp;~&nbsp;416&nbsp;</b>of <b>tesco-admin\src\main\java\io\renren\common\xss\HTMLFilter.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px">
+    private String processTag(final String s) {
+        // ending tags
+        Matcher m = P_END_TAG.matcher(s);
+        if (m.find()) {
+            final String name = m.group(1).toLowerCase();
+            if (allowed(name)) {
+                if (!inArray(name, vSelfClosingTags)) {
+                    if (vTagCounts.containsKey(name)) {
+                        vTagCounts.put(name, vTagCounts.get(name) - 1);
+                        return "&lt;/" + name + "&gt;";
+                    }
+                }
+            }
+        }
+
+        // starting tags
+        m = P_START_TAG.matcher(s);
+        if (m.find()) {
+            final String name = m.group(1).toLowerCase();
+            final String body = m.group(2);
+            String ending = m.group(3);
+
+            //debug( "in a starting tag, name='" + name + "'; body='" + body + "'; ending='" + ending + "'" );
+            if (allowed(name)) {
+                String params = "";
+
+                final Matcher m2 = P_QUOTED_ATTRIBUTES.matcher(body);
+                final Matcher m3 = P_UNQUOTED_ATTRIBUTES.matcher(body);
+                final List&lt;String&gt; paramNames = new ArrayList&lt;String&gt;();
+                final List&lt;String&gt; paramValues = new ArrayList&lt;String&gt;();
+                while (m2.find()) {
+                    paramNames.add(m2.group(1)); //([a-z0-9]+)
+                    paramValues.add(m2.group(3)); //(.*?)
+                }
+                while (m3.find()) {
+                    paramNames.add(m3.group(1)); //([a-z0-9]+)
+                    paramValues.add(m3.group(3)); //([^\"\\s']+)
+                }
+
+                String paramName, paramValue;
+                for (int ii = 0; ii &lt; paramNames.size(); ii++) {
+                    paramName = paramNames.get(ii).toLowerCase();
+                    paramValue = paramValues.get(ii);
+
+//          debug( "paramName='" + paramName + "'" );
+//          debug( "paramValue='" + paramValue + "'" );
+//          debug( "allowed? " + vAllowed.get( name ).contains( paramName ) );
+
+                    if (allowedAttribute(name, paramName)) {
+                        if (inArray(paramName, vProtocolAtts)) {
+                            paramValue = processParamProtocol(paramValue);
+                        }
+                        params += " " + paramName + "=\"" + paramValue + "\"";
+                    }
+                }
+
+                if (inArray(name, vSelfClosingTags)) {
+                    ending = " /";
+                }
+
+                if (inArray(name, vNeedClosingTags)) {
+                    ending = "";
+                }
+
+                if (ending == null || ending.length() &lt; 1) {
+                    if (vTagCounts.containsKey(name)) {
+                        vTagCounts.put(name, vTagCounts.get(name) + 1);
+                    } else {
+                        vTagCounts.put(name, 1);
+                    }
+                } else {
+                    ending = " /";
+                }
+                return "&lt;" + name + params + ending + "&gt;";
+            } else {
+                return "";
+            }
+        }
+
+        // comments
+        m = P_COMMENT.matcher(s);
+        if (!stripComment && m.find()) {
+            return  "&lt;" + m.group() + "&gt;";
+        }
+
+        return "";
+    }
+</pre>
+                                            <br />
+                                            <b> <a> Clone 2 Location: </a> </b> <a> In line&nbsp;<b>330&nbsp;~&nbsp;416&nbsp;</b>of <b>tesco-common\src\main\java\com\jerusalem\common\xss\HTMLFilter.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px" >
+    private String processTag(final String s) {
+        // ending tags
+        Matcher m = P_END_TAG.matcher(s);
+        if (m.find()) {
+            final String name = m.group(1).toLowerCase();
+            if (allowed(name)) {
+                if (!inArray(name, vSelfClosingTags)) {
+                    if (vTagCounts.containsKey(name)) {
+                        vTagCounts.put(name, vTagCounts.get(name) - 1);
+                        return "&lt;/" + name + "&gt;";
+                    }
+                }
+            }
+        }
+
+        // starting tags
+        m = P_START_TAG.matcher(s);
+        if (m.find()) {
+            final String name = m.group(1).toLowerCase();
+            final String body = m.group(2);
+            String ending = m.group(3);
+
+            //debug( "in a starting tag, name='" + name + "'; body='" + body + "'; ending='" + ending + "'" );
+            if (allowed(name)) {
+                String params = "";
+
+                final Matcher m2 = P_QUOTED_ATTRIBUTES.matcher(body);
+                final Matcher m3 = P_UNQUOTED_ATTRIBUTES.matcher(body);
+                final List&lt;String&gt; paramNames = new ArrayList&lt;String&gt;();
+                final List&lt;String&gt; paramValues = new ArrayList&lt;String&gt;();
+                while (m2.find()) {
+                    paramNames.add(m2.group(1)); //([a-z0-9]+)
+                    paramValues.add(m2.group(3)); //(.*?)
+                }
+                while (m3.find()) {
+                    paramNames.add(m3.group(1)); //([a-z0-9]+)
+                    paramValues.add(m3.group(3)); //([^\"\\s']+)
+                }
+
+                String paramName, paramValue;
+                for (int ii = 0; ii &lt; paramNames.size(); ii++) {
+                    paramName = paramNames.get(ii).toLowerCase();
+                    paramValue = paramValues.get(ii);
+
+//          debug( "paramName='" + paramName + "'" );
+//          debug( "paramValue='" + paramValue + "'" );
+//          debug( "allowed? " + vAllowed.get( name ).contains( paramName ) );
+
+                    if (allowedAttribute(name, paramName)) {
+                        if (inArray(paramName, vProtocolAtts)) {
+                            paramValue = processParamProtocol(paramValue);
+                        }
+                        params += " " + paramName + "=\"" + paramValue + "\"";
+                    }
+                }
+
+                if (inArray(name, vSelfClosingTags)) {
+                    ending = " /";
+                }
+
+                if (inArray(name, vNeedClosingTags)) {
+                    ending = "";
+                }
+
+                if (ending == null || ending.length() &lt; 1) {
+                    if (vTagCounts.containsKey(name)) {
+                        vTagCounts.put(name, vTagCounts.get(name) + 1);
+                    } else {
+                        vTagCounts.put(name, 1);
+                    }
+                } else {
+                    ending = " /";
+                }
+                return "&lt;" + name + params + ending + "&gt;";
+            } else {
+                return "";
+            }
+        }
+
+        // comments
+        m = P_COMMENT.matcher(s);
+        if (!stripComment && m.find()) {
+            return  "&lt;" + m.group() + "&gt;";
+        }
+
+        return "";
+    }
+</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-card" id="3" style="display:block">
+                            <div class="layui-card-header ">
+                                <h3>
+                                    <b><a>No.797</a></b>
+                                </h3>
+                            </div>
+                            <div class="layui-card-body">
+                                <div class="layui-word-aux">
+                                    <b> <a> Project: </a> </b> <a> tesco-mall</a>
+                                    <br />
+                                    <b> <a> Category: </a> </b> <a> &nbsp;&nbsp; Other &rarr; Utility Method &rarr; None</a>
+                                </div>
+                                <hr />
+                                <div class="layui-collapse" >
+                                    <div class="layui-colla-item" >
+                                        <h2 class="layui-colla-title">source code</h2>
+                                        <div class="layui-colla-content ">
+                                            <b> <a> Clone 1 Location: </a> </b> <a> In line&nbsp;<b>108&nbsp;~&nbsp;139&nbsp;</b>of <b>tesco-admin\src\main\java\io\renren\common\xss\HTMLFilter.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px">
+    public HTMLFilter() {
+        vAllowed = new HashMap&lt;&gt;();
+
+        final ArrayList&lt;String&gt; a_atts = new ArrayList&lt;String&gt;();
+        a_atts.add("href");
+        a_atts.add("target");
+        vAllowed.put("a", a_atts);
+
+        final ArrayList&lt;String&gt; img_atts = new ArrayList&lt;String&gt;();
+        img_atts.add("src");
+        img_atts.add("width");
+        img_atts.add("height");
+        img_atts.add("alt");
+        vAllowed.put("img", img_atts);
+
+        final ArrayList&lt;String&gt; no_atts = new ArrayList&lt;String&gt;();
+        vAllowed.put("b", no_atts);
+        vAllowed.put("strong", no_atts);
+        vAllowed.put("i", no_atts);
+        vAllowed.put("em", no_atts);
+
+        vSelfClosingTags = new String[]{"img"};
+        vNeedClosingTags = new String[]{"a", "b", "strong", "i", "em"};
+        vDisallowed = new String[]{};
+        vAllowedProtocols = new String[]{"http", "mailto", "https"}; // no ftp.
+        vProtocolAtts = new String[]{"src", "href"};
+        vRemoveBlanks = new String[]{"a", "b", "strong", "i", "em"};
+        vAllowedEntities = new String[]{"amp", "gt", "lt", "quot"};
+        stripComment = true;
+        encodeQuotes = true;
+        alwaysMakeTags = true;
+    }
+</pre>
+                                            <br />
+                                            <b> <a> Clone 2 Location: </a> </b> <a> In line&nbsp;<b>108&nbsp;~&nbsp;139&nbsp;</b>of <b>tesco-common\src\main\java\com\jerusalem\common\xss\HTMLFilter.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px" >
+    public HTMLFilter() {
+        vAllowed = new HashMap&lt;&gt;();
+
+        final ArrayList&lt;String&gt; a_atts = new ArrayList&lt;String&gt;();
+        a_atts.add("href");
+        a_atts.add("target");
+        vAllowed.put("a", a_atts);
+
+        final ArrayList&lt;String&gt; img_atts = new ArrayList&lt;String&gt;();
+        img_atts.add("src");
+        img_atts.add("width");
+        img_atts.add("height");
+        img_atts.add("alt");
+        vAllowed.put("img", img_atts);
+
+        final ArrayList&lt;String&gt; no_atts = new ArrayList&lt;String&gt;();
+        vAllowed.put("b", no_atts);
+        vAllowed.put("strong", no_atts);
+        vAllowed.put("i", no_atts);
+        vAllowed.put("em", no_atts);
+
+        vSelfClosingTags = new String[]{"img"};
+        vNeedClosingTags = new String[]{"a", "b", "strong", "i", "em"};
+        vDisallowed = new String[]{};
+        vAllowedProtocols = new String[]{"http", "mailto", "https"}; // no ftp.
+        vProtocolAtts = new String[]{"src", "href"};
+        vRemoveBlanks = new String[]{"a", "b", "strong", "i", "em"};
+        vAllowedEntities = new String[]{"amp", "gt", "lt", "quot"};
+        stripComment = true;
+        encodeQuotes = true;
+        alwaysMakeTags = true;
+    }
+</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-card" id="4" style="display:block">
+                            <div class="layui-card-header ">
+                                <h3>
+                                    <b><a>No.798</a></b>
+                                </h3>
+                            </div>
+                            <div class="layui-card-body">
+                                <div class="layui-word-aux">
+                                    <b> <a> Project: </a> </b> <a> tesco-mall</a>
+                                    <br />
+                                    <b> <a> Category: </a> </b> <a> &nbsp;&nbsp; Other &rarr; Utility Method &rarr; None</a>
+                                </div>
+                                <hr />
+                                <div class="layui-collapse" >
+                                    <div class="layui-colla-item" >
+                                        <h2 class="layui-colla-title">source code</h2>
+                                        <div class="layui-colla-content ">
+                                            <b> <a> Clone 1 Location: </a> </b> <a> In line&nbsp;<b>435&nbsp;~&nbsp;469&nbsp;</b>of <b>tesco-admin\src\main\java\io\renren\common\xss\HTMLFilter.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px">
+    private String decodeEntities(String s) {
+        StringBuffer buf = new StringBuffer();
+
+        Matcher m = P_ENTITY.matcher(s);
+        while (m.find()) {
+            final String match = m.group(1);
+            final int decimal = Integer.decode(match).intValue();
+            m.appendReplacement(buf, Matcher.quoteReplacement(chr(decimal)));
+        }
+        m.appendTail(buf);
+        s = buf.toString();
+
+        buf = new StringBuffer();
+        m = P_ENTITY_UNICODE.matcher(s);
+        while (m.find()) {
+            final String match = m.group(1);
+            final int decimal = Integer.valueOf(match, 16).intValue();
+            m.appendReplacement(buf, Matcher.quoteReplacement(chr(decimal)));
+        }
+        m.appendTail(buf);
+        s = buf.toString();
+
+        buf = new StringBuffer();
+        m = P_ENCODE.matcher(s);
+        while (m.find()) {
+            final String match = m.group(1);
+            final int decimal = Integer.valueOf(match, 16).intValue();
+            m.appendReplacement(buf, Matcher.quoteReplacement(chr(decimal)));
+        }
+        m.appendTail(buf);
+        s = buf.toString();
+
+        s = validateEntities(s);
+        return s;
+    }
+</pre>
+                                            <br />
+                                            <b> <a> Clone 2 Location: </a> </b> <a> In line&nbsp;<b>435&nbsp;~&nbsp;469&nbsp;</b>of <b>tesco-common\src\main\java\com\jerusalem\common\xss\HTMLFilter.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px" >
+    private String decodeEntities(String s) {
+        StringBuffer buf = new StringBuffer();
+
+        Matcher m = P_ENTITY.matcher(s);
+        while (m.find()) {
+            final String match = m.group(1);
+            final int decimal = Integer.decode(match).intValue();
+            m.appendReplacement(buf, Matcher.quoteReplacement(chr(decimal)));
+        }
+        m.appendTail(buf);
+        s = buf.toString();
+
+        buf = new StringBuffer();
+        m = P_ENTITY_UNICODE.matcher(s);
+        while (m.find()) {
+            final String match = m.group(1);
+            final int decimal = Integer.valueOf(match, 16).intValue();
+            m.appendReplacement(buf, Matcher.quoteReplacement(chr(decimal)));
+        }
+        m.appendTail(buf);
+        s = buf.toString();
+
+        buf = new StringBuffer();
+        m = P_ENCODE.matcher(s);
+        while (m.find()) {
+            final String match = m.group(1);
+            final int decimal = Integer.valueOf(match, 16).intValue();
+            m.appendReplacement(buf, Matcher.quoteReplacement(chr(decimal)));
+        }
+        m.appendTail(buf);
+        s = buf.toString();
+
+        s = validateEntities(s);
+        return s;
+    }
+</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-card" id="5" style="display:block">
+                            <div class="layui-card-header ">
+                                <h3>
+                                    <b><a>No.800</a></b>
+                                </h3>
+                            </div>
+                            <div class="layui-card-body">
+                                <div class="layui-word-aux">
+                                    <b> <a> Project: </a> </b> <a> tesco-mall</a>
+                                    <br />
+                                    <b> <a> Category: </a> </b> <a> &nbsp;&nbsp; Other &rarr; Utility Method &rarr; None</a>
+                                </div>
+                                <hr />
+                                <div class="layui-collapse" >
+                                    <div class="layui-colla-item" >
+                                        <h2 class="layui-colla-title">source code</h2>
+                                        <div class="layui-colla-content ">
+                                            <b> <a> Clone 1 Location: </a> </b> <a> In line&nbsp;<b>155&nbsp;~&nbsp;177&nbsp;</b>of <b>tesco-admin\src\main\java\io\renren\common\xss\HTMLFilter.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px">
+    public HTMLFilter(final Map&lt;String,Object&gt; conf) {
+
+        assert conf.containsKey("vAllowed") : "configuration requires vAllowed";
+        assert conf.containsKey("vSelfClosingTags") : "configuration requires vSelfClosingTags";
+        assert conf.containsKey("vNeedClosingTags") : "configuration requires vNeedClosingTags";
+        assert conf.containsKey("vDisallowed") : "configuration requires vDisallowed";
+        assert conf.containsKey("vAllowedProtocols") : "configuration requires vAllowedProtocols";
+        assert conf.containsKey("vProtocolAtts") : "configuration requires vProtocolAtts";
+        assert conf.containsKey("vRemoveBlanks") : "configuration requires vRemoveBlanks";
+        assert conf.containsKey("vAllowedEntities") : "configuration requires vAllowedEntities";
+
+        vAllowed = Collections.unmodifiableMap((HashMap&lt;String, List&lt;String&gt;&gt;) conf.get("vAllowed"));
+        vSelfClosingTags = (String[]) conf.get("vSelfClosingTags");
+        vNeedClosingTags = (String[]) conf.get("vNeedClosingTags");
+        vDisallowed = (String[]) conf.get("vDisallowed");
+        vAllowedProtocols = (String[]) conf.get("vAllowedProtocols");
+        vProtocolAtts = (String[]) conf.get("vProtocolAtts");
+        vRemoveBlanks = (String[]) conf.get("vRemoveBlanks");
+        vAllowedEntities = (String[]) conf.get("vAllowedEntities");
+        stripComment =  conf.containsKey("stripComment") ? (Boolean) conf.get("stripComment") : true;
+        encodeQuotes = conf.containsKey("encodeQuotes") ? (Boolean) conf.get("encodeQuotes") : true;
+        alwaysMakeTags = conf.containsKey("alwaysMakeTags") ? (Boolean) conf.get("alwaysMakeTags") : true;
+    }
+</pre>
+                                            <br />
+                                            <b> <a> Clone 2 Location: </a> </b> <a> In line&nbsp;<b>155&nbsp;~&nbsp;177&nbsp;</b>of <b>tesco-common\src\main\java\com\jerusalem\common\xss\HTMLFilter.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px" >
+    public HTMLFilter(final Map&lt;String,Object&gt; conf) {
+
+        assert conf.containsKey("vAllowed") : "configuration requires vAllowed";
+        assert conf.containsKey("vSelfClosingTags") : "configuration requires vSelfClosingTags";
+        assert conf.containsKey("vNeedClosingTags") : "configuration requires vNeedClosingTags";
+        assert conf.containsKey("vDisallowed") : "configuration requires vDisallowed";
+        assert conf.containsKey("vAllowedProtocols") : "configuration requires vAllowedProtocols";
+        assert conf.containsKey("vProtocolAtts") : "configuration requires vProtocolAtts";
+        assert conf.containsKey("vRemoveBlanks") : "configuration requires vRemoveBlanks";
+        assert conf.containsKey("vAllowedEntities") : "configuration requires vAllowedEntities";
+
+        vAllowed = Collections.unmodifiableMap((HashMap&lt;String, List&lt;String&gt;&gt;) conf.get("vAllowed"));
+        vSelfClosingTags = (String[]) conf.get("vSelfClosingTags");
+        vNeedClosingTags = (String[]) conf.get("vNeedClosingTags");
+        vDisallowed = (String[]) conf.get("vDisallowed");
+        vAllowedProtocols = (String[]) conf.get("vAllowedProtocols");
+        vProtocolAtts = (String[]) conf.get("vProtocolAtts");
+        vRemoveBlanks = (String[]) conf.get("vRemoveBlanks");
+        vAllowedEntities = (String[]) conf.get("vAllowedEntities");
+        stripComment =  conf.containsKey("stripComment") ? (Boolean) conf.get("stripComment") : true;
+        encodeQuotes = conf.containsKey("encodeQuotes") ? (Boolean) conf.get("encodeQuotes") : true;
+        alwaysMakeTags = conf.containsKey("alwaysMakeTags") ? (Boolean) conf.get("alwaysMakeTags") : true;
+    }
+</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-card" id="6" style="display:block">
+                            <div class="layui-card-header ">
+                                <h3>
+                                    <b><a>No.801</a></b>
+                                </h3>
+                            </div>
+                            <div class="layui-card-body">
+                                <div class="layui-word-aux">
+                                    <b> <a> Project: </a> </b> <a> tesco-mall</a>
+                                    <br />
+                                    <b> <a> Category: </a> </b> <a> &nbsp;&nbsp; Other &rarr; Utility Method &rarr; None</a>
+                                </div>
+                                <hr />
+                                <div class="layui-collapse" >
+                                    <div class="layui-colla-item" >
+                                        <h2 class="layui-colla-title">source code</h2>
+                                        <div class="layui-colla-content ">
+                                            <b> <a> Clone 1 Location: </a> </b> <a> In line&nbsp;<b>212&nbsp;~&nbsp;236&nbsp;</b>of <b>tesco-admin\src\main\java\io\renren\common\xss\HTMLFilter.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px">
+    public String filter(final String input) {
+        reset();
+        String s = input;
+
+        debug("************************************************");
+        debug("              INPUT: " + input);
+
+        s = escapeComments(s);
+        debug("     escapeComments: " + s);
+
+        s = balanceHTML(s);
+        debug("        balanceHTML: " + s);
+
+        s = checkTags(s);
+        debug("          checkTags: " + s);
+
+        s = processRemoveBlanks(s);
+        debug("processRemoveBlanks: " + s);
+
+        s = validateEntities(s);
+        debug("    validateEntites: " + s);
+
+        debug("************************************************\n\n");
+        return s;
+    }
+</pre>
+                                            <br />
+                                            <b> <a> Clone 2 Location: </a> </b> <a> In line&nbsp;<b>212&nbsp;~&nbsp;236&nbsp;</b>of <b>tesco-common\src\main\java\com\jerusalem\common\xss\HTMLFilter.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px" >
+    public String filter(final String input) {
+        reset();
+        String s = input;
+
+        debug("************************************************");
+        debug("              INPUT: " + input);
+
+        s = escapeComments(s);
+        debug("     escapeComments: " + s);
+
+        s = balanceHTML(s);
+        debug("        balanceHTML: " + s);
+
+        s = checkTags(s);
+        debug("          checkTags: " + s);
+
+        s = processRemoveBlanks(s);
+        debug("processRemoveBlanks: " + s);
+
+        s = validateEntities(s);
+        debug("    validateEntites: " + s);
+
+        debug("************************************************\n\n");
+        return s;
+    }
+</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-card" id="7" style="display:block">
+                            <div class="layui-card-header ">
+                                <h3>
+                                    <b><a>No.802</a></b>
+                                </h3>
+                            </div>
+                            <div class="layui-card-body">
+                                <div class="layui-word-aux">
+                                    <b> <a> Project: </a> </b> <a> tesco-mall</a>
+                                    <br />
+                                    <b> <a> Category: </a> </b> <a> &nbsp;&nbsp; Other &rarr; Utility Method &rarr; None</a>
+                                </div>
+                                <hr />
+                                <div class="layui-collapse" >
+                                    <div class="layui-colla-item" >
+                                        <h2 class="layui-colla-title">source code</h2>
+                                        <div class="layui-colla-content ">
+                                            <b> <a> Clone 1 Location: </a> </b> <a> In line&nbsp;<b>25&nbsp;~&nbsp;49&nbsp;</b>of <b>tesco-admin\src\main\java\io\renren\common\xss\SQLFilter.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px">
+    public static String sqlInject(String str){
+        if(StringUtils.isBlank(str)){
+            return null;
+        }
+        //去掉'|"|;|\字符
+        str = StringUtils.replace(str, "'", "");
+        str = StringUtils.replace(str, "\"", "");
+        str = StringUtils.replace(str, ";", "");
+        str = StringUtils.replace(str, "\\", "");
+
+        //转换成小写
+        str = str.toLowerCase();
+
+        //非法字符
+        String[] keywords = {"master", "truncate", "insert", "select", "delete", "update", "declare", "alter", "drop"};
+
+        //判断是否包含非法字符
+        for(String keyword : keywords){
+            if(str.indexOf(keyword) != -1){
+                throw new RRException("包含非法字符");
+            }
+        }
+
+        return str;
+    }
+</pre>
+                                            <br />
+                                            <b> <a> Clone 2 Location: </a> </b> <a> In line&nbsp;<b>18&nbsp;~&nbsp;41&nbsp;</b>of <b>tesco-common\src\main\java\com\jerusalem\common\xss\SQLFilter.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px" >
+    public static String sqlInject(String str){
+        if(StringUtils.isBlank(str)){
+            return null;
+        }
+        //去掉'|"|;|\字符
+        str = StringUtils.replace(str, "'", "");
+        str = StringUtils.replace(str, "\"", "");
+        str = StringUtils.replace(str, ";", "");
+        str = StringUtils.replace(str, "\\", "");
+
+        //转换成小写
+        str = str.toLowerCase();
+
+        //非法字符
+        String[] keywords = {"master", "truncate", "insert", "select", "delete", "update", "declare", "alter", "drop"};
+
+        //判断是否包含非法字符
+        for(String keyword : keywords){
+            if(str.indexOf(keyword) != -1){
+                throw new RRException("包含非法字符");
+            }
+        }
+        return str;
+    }
+</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-card" id="8" style="display:block">
+                            <div class="layui-card-header ">
+                                <h3>
+                                    <b><a>No.803</a></b>
+                                </h3>
+                            </div>
+                            <div class="layui-card-body">
+                                <div class="layui-word-aux">
+                                    <b> <a> Project: </a> </b> <a> tesco-mall</a>
+                                    <br />
+                                    <b> <a> Category: </a> </b> <a> &nbsp;&nbsp; Other &rarr; Utility Method &rarr; None</a>
+                                </div>
+                                <hr />
+                                <div class="layui-collapse" >
+                                    <div class="layui-colla-item" >
+                                        <h2 class="layui-colla-title">source code</h2>
+                                        <div class="layui-colla-content ">
+                                            <b> <a> Clone 1 Location: </a> </b> <a> In line&nbsp;<b>486&nbsp;~&nbsp;501&nbsp;</b>of <b>tesco-admin\src\main\java\io\renren\common\xss\HTMLFilter.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px">
+    private String encodeQuotes(final String s){
+        if(encodeQuotes){
+            StringBuffer buf = new StringBuffer();
+            Matcher m = P_VALID_QUOTES.matcher(s);
+            while (m.find()) {
+                final String one = m.group(1); //(&gt;|^)
+                final String two = m.group(2); //([^&lt;]+?)
+                final String three = m.group(3); //(&lt;|$)
+                m.appendReplacement(buf, Matcher.quoteReplacement(one + regexReplace(P_QUOTE, "&quot;", two) + three));
+            }
+            m.appendTail(buf);
+            return buf.toString();
+        }else{
+            return s;
+        }
+    }
+</pre>
+                                            <br />
+                                            <b> <a> Clone 2 Location: </a> </b> <a> In line&nbsp;<b>486&nbsp;~&nbsp;501&nbsp;</b>of <b>tesco-common\src\main\java\com\jerusalem\common\xss\HTMLFilter.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px" >
+    private String encodeQuotes(final String s){
+        if(encodeQuotes){
+            StringBuffer buf = new StringBuffer();
+            Matcher m = P_VALID_QUOTES.matcher(s);
+            while (m.find()) {
+                final String one = m.group(1); //(&gt;|^)
+                final String two = m.group(2); //([^&lt;]+?)
+                final String three = m.group(3); //(&lt;|$)
+                m.appendReplacement(buf, Matcher.quoteReplacement(one + regexReplace(P_QUOTE, "&quot;", two) + three));
+            }
+            m.appendTail(buf);
+            return buf.toString();
+        }else{
+            return s;
+        }
+    }
+</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-card" id="9" style="display:block">
+                            <div class="layui-card-header ">
+                                <h3>
+                                    <b><a>No.804</a></b>
+                                </h3>
+                            </div>
+                            <div class="layui-card-body">
+                                <div class="layui-word-aux">
+                                    <b> <a> Project: </a> </b> <a> tesco-mall</a>
+                                    <br />
+                                    <b> <a> Category: </a> </b> <a> &nbsp;&nbsp; Other &rarr; Utility Method &rarr; None</a>
+                                </div>
+                                <hr />
+                                <div class="layui-collapse" >
+                                    <div class="layui-colla-item" >
+                                        <h2 class="layui-colla-title">source code</h2>
+                                        <div class="layui-colla-content ">
+                                            <b> <a> Clone 1 Location: </a> </b> <a> In line&nbsp;<b>285&nbsp;~&nbsp;307&nbsp;</b>of <b>tesco-admin\src\main\java\io\renren\common\xss\HTMLFilter.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px">
+    private String checkTags(String s) {
+        Matcher m = P_TAGS.matcher(s);
+
+        final StringBuffer buf = new StringBuffer();
+        while (m.find()) {
+            String replaceStr = m.group(1);
+            replaceStr = processTag(replaceStr);
+            m.appendReplacement(buf, Matcher.quoteReplacement(replaceStr));
+        }
+        m.appendTail(buf);
+
+        s = buf.toString();
+
+        // these get tallied in processTag
+        // (remember to reset before subsequent calls to filter method)
+        for (String key : vTagCounts.keySet()) {
+            for (int ii = 0; ii &lt; vTagCounts.get(key); ii++) {
+                s += "&lt;/" + key + "&gt;";
+            }
+        }
+
+        return s;
+    }
+</pre>
+                                            <br />
+                                            <b> <a> Clone 2 Location: </a> </b> <a> In line&nbsp;<b>285&nbsp;~&nbsp;307&nbsp;</b>of <b>tesco-common\src\main\java\com\jerusalem\common\xss\HTMLFilter.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px" >
+    private String checkTags(String s) {
+        Matcher m = P_TAGS.matcher(s);
+
+        final StringBuffer buf = new StringBuffer();
+        while (m.find()) {
+            String replaceStr = m.group(1);
+            replaceStr = processTag(replaceStr);
+            m.appendReplacement(buf, Matcher.quoteReplacement(replaceStr));
+        }
+        m.appendTail(buf);
+
+        s = buf.toString();
+
+        // these get tallied in processTag
+        // (remember to reset before subsequent calls to filter method)
+        for (String key : vTagCounts.keySet()) {
+            for (int ii = 0; ii &lt; vTagCounts.get(key); ii++) {
+                s += "&lt;/" + key + "&gt;";
+            }
+        }
+
+        return s;
+    }
+</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-card" id="10" style="display:block">
+                            <div class="layui-card-header ">
+                                <h3>
+                                    <b><a>No.805</a></b>
+                                </h3>
+                            </div>
+                            <div class="layui-card-body">
+                                <div class="layui-word-aux">
+                                    <b> <a> Project: </a> </b> <a> tesco-mall</a>
+                                    <br />
+                                    <b> <a> Category: </a> </b> <a> &nbsp;&nbsp; Other &rarr; Utility Method &rarr; None</a>
+                                </div>
+                                <hr />
+                                <div class="layui-collapse" >
+                                    <div class="layui-colla-item" >
+                                        <h2 class="layui-colla-title">source code</h2>
+                                        <div class="layui-colla-content ">
+                                            <b> <a> Clone 1 Location: </a> </b> <a> In line&nbsp;<b>418&nbsp;~&nbsp;433&nbsp;</b>of <b>tesco-admin\src\main\java\io\renren\common\xss\HTMLFilter.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px">
+    private String processParamProtocol(String s) {
+        s = decodeEntities(s);
+        final Matcher m = P_PROTOCOL.matcher(s);
+        if (m.find()) {
+            final String protocol = m.group(1);
+            if (!inArray(protocol, vAllowedProtocols)) {
+                // bad protocol, turn into local anchor link instead
+                s = "#" + s.substring(protocol.length() + 1, s.length());
+                if (s.startsWith("#//")) {
+                    s = "#" + s.substring(3, s.length());
+                }
+            }
+        }
+
+        return s;
+    }
+</pre>
+                                            <br />
+                                            <b> <a> Clone 2 Location: </a> </b> <a> In line&nbsp;<b>418&nbsp;~&nbsp;433&nbsp;</b>of <b>tesco-common\src\main\java\com\jerusalem\common\xss\HTMLFilter.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px" >
+    private String processParamProtocol(String s) {
+        s = decodeEntities(s);
+        final Matcher m = P_PROTOCOL.matcher(s);
+        if (m.find()) {
+            final String protocol = m.group(1);
+            if (!inArray(protocol, vAllowedProtocols)) {
+                // bad protocol, turn into local anchor link instead
+                s = "#" + s.substring(protocol.length() + 1, s.length());
+                if (s.startsWith("#//")) {
+                    s = "#" + s.substring(3, s.length());
+                }
+            }
+        }
+
+        return s;
+    }
+</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-card" id="11" style="display:block">
+                            <div class="layui-card-header ">
+                                <h3>
+                                    <b><a>No.806</a></b>
+                                </h3>
+                            </div>
+                            <div class="layui-card-body">
+                                <div class="layui-word-aux">
+                                    <b> <a> Project: </a> </b> <a> tesco-mall</a>
+                                    <br />
+                                    <b> <a> Category: </a> </b> <a> &nbsp;&nbsp; Other &rarr; Utility Method &rarr; None</a>
+                                </div>
+                                <hr />
+                                <div class="layui-collapse" >
+                                    <div class="layui-colla-item" >
+                                        <h2 class="layui-colla-title">source code</h2>
+                                        <div class="layui-colla-content ">
+                                            <b> <a> Clone 1 Location: </a> </b> <a> In line&nbsp;<b>309&nbsp;~&nbsp;323&nbsp;</b>of <b>tesco-admin\src\main\java\io\renren\common\xss\HTMLFilter.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px">
+    private String processRemoveBlanks(final String s) {
+        String result = s;
+        for (String tag : vRemoveBlanks) {
+            if(!P_REMOVE_PAIR_BLANKS.containsKey(tag)){
+                P_REMOVE_PAIR_BLANKS.putIfAbsent(tag, Pattern.compile("&lt;" + tag + "(\\s[^&gt;]*)?&gt;&lt;/" + tag + "&gt;"));
+            }
+            result = regexReplace(P_REMOVE_PAIR_BLANKS.get(tag), "", result);
+            if(!P_REMOVE_SELF_BLANKS.containsKey(tag)){
+                P_REMOVE_SELF_BLANKS.putIfAbsent(tag, Pattern.compile("&lt;" + tag + "(\\s[^&gt;]*)?/&gt;"));
+            }
+            result = regexReplace(P_REMOVE_SELF_BLANKS.get(tag), "", result);
+        }
+
+        return result;
+    }
+</pre>
+                                            <br />
+                                            <b> <a> Clone 2 Location: </a> </b> <a> In line&nbsp;<b>309&nbsp;~&nbsp;323&nbsp;</b>of <b>tesco-common\src\main\java\com\jerusalem\common\xss\HTMLFilter.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px" >
+    private String processRemoveBlanks(final String s) {
+        String result = s;
+        for (String tag : vRemoveBlanks) {
+            if(!P_REMOVE_PAIR_BLANKS.containsKey(tag)){
+                P_REMOVE_PAIR_BLANKS.putIfAbsent(tag, Pattern.compile("&lt;" + tag + "(\\s[^&gt;]*)?&gt;&lt;/" + tag + "&gt;"));
+            }
+            result = regexReplace(P_REMOVE_PAIR_BLANKS.get(tag), "", result);
+            if(!P_REMOVE_SELF_BLANKS.containsKey(tag)){
+                P_REMOVE_SELF_BLANKS.putIfAbsent(tag, Pattern.compile("&lt;" + tag + "(\\s[^&gt;]*)?/&gt;"));
+            }
+            result = regexReplace(P_REMOVE_SELF_BLANKS.get(tag), "", result);
+        }
+
+        return result;
+    }
+</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-card" id="12" style="display:block">
+                            <div class="layui-card-header ">
+                                <h3>
+                                    <b><a>No.807</a></b>
+                                </h3>
+                            </div>
+                            <div class="layui-card-body">
+                                <div class="layui-word-aux">
+                                    <b> <a> Project: </a> </b> <a> tesco-mall</a>
+                                    <br />
+                                    <b> <a> Category: </a> </b> <a> &nbsp;&nbsp; Other &rarr; Utility Method &rarr; None</a>
+                                </div>
+                                <hr />
+                                <div class="layui-collapse" >
+                                    <div class="layui-colla-item" >
+                                        <h2 class="layui-colla-title">source code</h2>
+                                        <div class="layui-colla-content ">
+                                            <b> <a> Clone 1 Location: </a> </b> <a> In line&nbsp;<b>258&nbsp;~&nbsp;283&nbsp;</b>of <b>tesco-admin\src\main\java\io\renren\common\xss\HTMLFilter.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px">
+    private String balanceHTML(String s) {
+        if (alwaysMakeTags) {
+            //
+            // try and form html
+            //
+            s = regexReplace(P_END_ARROW, "", s);
+            s = regexReplace(P_BODY_TO_END, "&lt;$1&gt;", s);
+            s = regexReplace(P_XML_CONTENT, "$1&lt;$2", s);
+
+        } else {
+            //
+            // escape stray brackets
+            //
+            s = regexReplace(P_STRAY_LEFT_ARROW, "&lt;$1", s);
+            s = regexReplace(P_STRAY_RIGHT_ARROW, "$1$2&gt;&lt;", s);
+
+            //
+            // the last regexp causes '&lt;&gt;' entities to appear
+            // (we need to do a lookahead assertion so that the last bracket can
+            // be used in the next pass of the regexp)
+            //
+            s = regexReplace(P_BOTH_ARROWS, "", s);
+        }
+
+        return s;
+    }
+</pre>
+                                            <br />
+                                            <b> <a> Clone 2 Location: </a> </b> <a> In line&nbsp;<b>258&nbsp;~&nbsp;283&nbsp;</b>of <b>tesco-common\src\main\java\com\jerusalem\common\xss\HTMLFilter.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px" >
+    private String balanceHTML(String s) {
+        if (alwaysMakeTags) {
+            //
+            // try and form html
+            //
+            s = regexReplace(P_END_ARROW, "", s);
+            s = regexReplace(P_BODY_TO_END, "&lt;$1&gt;", s);
+            s = regexReplace(P_XML_CONTENT, "$1&lt;$2", s);
+
+        } else {
+            //
+            // escape stray brackets
+            //
+            s = regexReplace(P_STRAY_LEFT_ARROW, "&lt;$1", s);
+            s = regexReplace(P_STRAY_RIGHT_ARROW, "$1$2&gt;&lt;", s);
+
+            //
+            // the last regexp causes '&lt;&gt;' entities to appear
+            // (we need to do a lookahead assertion so that the last bracket can
+            // be used in the next pass of the regexp)
+            //
+            s = regexReplace(P_BOTH_ARROWS, "", s);
+        }
+
+        return s;
+    }
+</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-card" id="13" style="display:block">
+                            <div class="layui-card-header ">
+                                <h3>
+                                    <b><a>No.808</a></b>
+                                </h3>
+                            </div>
+                            <div class="layui-card-body">
+                                <div class="layui-word-aux">
+                                    <b> <a> Project: </a> </b> <a> tesco-mall</a>
+                                    <br />
+                                    <b> <a> Category: </a> </b> <a> &nbsp;&nbsp; Other &rarr; Utility Method &rarr; None</a>
+                                </div>
+                                <hr />
+                                <div class="layui-collapse" >
+                                    <div class="layui-colla-item" >
+                                        <h2 class="layui-colla-title">source code</h2>
+                                        <div class="layui-colla-content ">
+                                            <b> <a> Clone 1 Location: </a> </b> <a> In line&nbsp;<b>471&nbsp;~&nbsp;484&nbsp;</b>of <b>tesco-admin\src\main\java\io\renren\common\xss\HTMLFilter.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px">
+    private String validateEntities(final String s) {
+        StringBuffer buf = new StringBuffer();
+
+        // validate entities throughout the string
+        Matcher m = P_VALID_ENTITIES.matcher(s);
+        while (m.find()) {
+            final String one = m.group(1); //([^&;]*)
+            final String two = m.group(2); //(?=(;|&|$))
+            m.appendReplacement(buf, Matcher.quoteReplacement(checkEntity(one, two)));
+        }
+        m.appendTail(buf);
+
+        return encodeQuotes(buf.toString());
+    }
+</pre>
+                                            <br />
+                                            <b> <a> Clone 2 Location: </a> </b> <a> In line&nbsp;<b>471&nbsp;~&nbsp;484&nbsp;</b>of <b>tesco-common\src\main\java\com\jerusalem\common\xss\HTMLFilter.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px" >
+    private String validateEntities(final String s) {
+        StringBuffer buf = new StringBuffer();
+
+        // validate entities throughout the string
+        Matcher m = P_VALID_ENTITIES.matcher(s);
+        while (m.find()) {
+            final String one = m.group(1); //([^&;]*)
+            final String two = m.group(2); //(?=(;|&|$))
+            m.appendReplacement(buf, Matcher.quoteReplacement(checkEntity(one, two)));
+        }
+        m.appendTail(buf);
+
+        return encodeQuotes(buf.toString());
+    }
+</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-card" id="14" style="display:block">
+                            <div class="layui-card-header ">
+                                <h3>
+                                    <b><a>No.809</a></b>
+                                </h3>
+                            </div>
+                            <div class="layui-card-body">
+                                <div class="layui-word-aux">
+                                    <b> <a> Project: </a> </b> <a> tesco-mall</a>
+                                    <br />
+                                    <b> <a> Category: </a> </b> <a> &nbsp;&nbsp; Other &rarr; Utility Method &rarr; None</a>
+                                </div>
+                                <hr />
+                                <div class="layui-collapse" >
+                                    <div class="layui-colla-item" >
+                                        <h2 class="layui-colla-title">source code</h2>
+                                        <div class="layui-colla-content ">
+                                            <b> <a> Clone 1 Location: </a> </b> <a> In line&nbsp;<b>246&nbsp;~&nbsp;256&nbsp;</b>of <b>tesco-admin\src\main\java\io\renren\common\xss\HTMLFilter.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px">
+    private String escapeComments(final String s) {
+        final Matcher m = P_COMMENTS.matcher(s);
+        final StringBuffer buf = new StringBuffer();
+        if (m.find()) {
+            final String match = m.group(1); //(.*?)
+            m.appendReplacement(buf, Matcher.quoteReplacement("&lt;!--" + htmlSpecialChars(match) + "--&gt;"));
+        }
+        m.appendTail(buf);
+
+        return buf.toString();
+    }
+</pre>
+                                            <br />
+                                            <b> <a> Clone 2 Location: </a> </b> <a> In line&nbsp;<b>246&nbsp;~&nbsp;256&nbsp;</b>of <b>tesco-common\src\main\java\com\jerusalem\common\xss\HTMLFilter.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px" >
+    private String escapeComments(final String s) {
+        final Matcher m = P_COMMENTS.matcher(s);
+        final StringBuffer buf = new StringBuffer();
+        if (m.find()) {
+            final String match = m.group(1); //(.*?)
+            m.appendReplacement(buf, Matcher.quoteReplacement("&lt;!--" + htmlSpecialChars(match) + "--&gt;"));
+        }
+        m.appendTail(buf);
+
+        return buf.toString();
+    }
+</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-card" id="15" style="display:block">
+                            <div class="layui-card-header ">
+                                <h3>
+                                    <b><a>No.896</a></b>
+                                </h3>
+                            </div>
+                            <div class="layui-card-body">
+                                <div class="layui-word-aux">
+                                    <b> <a> Project: </a> </b> <a> train-ticket</a>
+                                    <br />
+                                    <b> <a> Category: </a> </b> <a> &nbsp;&nbsp; Other &rarr; Utility Method &rarr; None</a>
+                                </div>
+                                <hr />
+                                <div class="layui-collapse" >
+                                    <div class="layui-colla-item" >
+                                        <h2 class="layui-colla-title">source code</h2>
+                                        <div class="layui-colla-content ">
+                                            <b> <a> Clone 1 Location: </a> </b> <a> In line&nbsp;<b>34&nbsp;~&nbsp;43&nbsp;</b>of <b>ts-verification-code-service\src\main\java\verifycode\util\CookieUtil.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px">
+    private static Map&lt;String,Cookie&gt; readCookieMap(HttpServletRequest request){
+        Map&lt;String,Cookie&gt; cookieMap = new HashMap&lt;&gt;();
+        Cookie[] cookies = request.getCookies();
+        if(null!=cookies){
+            for(Cookie cookie : cookies){
+                cookieMap.put(cookie.getName(), cookie);
+            }
+        }
+        return cookieMap;
+    }
+</pre>
+                                            <br />
+                                            <b> <a> Clone 2 Location: </a> </b> <a> In line&nbsp;<b>38&nbsp;~&nbsp;47&nbsp;</b>of <b>ts-inside-payment-service\src\main\java\inside_payment\util\CookieUtil.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px" >
+    private static Map&lt;String,Cookie&gt; readCookieMap(HttpServletRequest request){
+        Map&lt;String,Cookie&gt; cookieMap = new HashMap&lt;&gt;();
+        Cookie[] cookies = request.getCookies();
+        if(null!=cookies){
+            for(Cookie cookie : cookies){
+                cookieMap.put(cookie.getName(), cookie);
+            }
+        }
+        return cookieMap;
+    }
+</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-card" id="16" style="display:block">
+                            <div class="layui-card-header ">
+                                <h3>
+                                    <b><a>No.1061</a></b>
+                                </h3>
+                            </div>
+                            <div class="layui-card-body">
+                                <div class="layui-word-aux">
+                                    <b> <a> Project: </a> </b> <a> wanxin</a>
+                                    <br />
+                                    <b> <a> Category: </a> </b> <a> &nbsp;&nbsp; Other &rarr; Utility Method &rarr; None</a>
+                                </div>
+                                <hr />
+                                <div class="layui-collapse" >
+                                    <div class="layui-colla-item" >
+                                        <h2 class="layui-colla-title">source code</h2>
+                                        <div class="layui-colla-content ">
+                                            <b> <a> Clone 1 Location: </a> </b> <a> In line&nbsp;<b>20&nbsp;~&nbsp;66&nbsp;</b>of <b>wanxinp2p-common\src\main\java\com\wanxin\common\util\Base64Util.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px">
+    public static String encode(byte[] from) {
+        StringBuilder to = new StringBuilder((int) ((double) from.length * 1.34D) + 3);
+        int num = 0;
+        char currentByte = 0;
+
+        int i;
+        for (i = 0; i &lt; from.length; ++i) {
+            for (num %= 8; num &lt; 8; num += 6) {
+                switch (num) {
+                    case 0:
+                        currentByte = (char) (from[i] & lead6byte);
+                        currentByte = (char) (currentByte &gt;&gt;&gt; 2);
+                    case 1:
+                    case 3:
+                    case 5:
+                    default:
+                        break;
+                    case 2:
+                        currentByte = (char) (from[i] & last6byte);
+                        break;
+                    case 4:
+                        currentByte = (char) (from[i] & last4byte);
+                        currentByte = (char) (currentByte &lt;&lt; 2);
+                        if (i + 1 &lt; from.length) {
+                            currentByte = (char) (currentByte | (from[i + 1] & lead2byte) &gt;&gt;&gt; 6);
+                        }
+                        break;
+                    case 6:
+                        currentByte = (char) (from[i] & last2byte);
+                        currentByte = (char) (currentByte &lt;&lt; 4);
+                        if (i + 1 &lt; from.length) {
+                            currentByte = (char) (currentByte | (from[i + 1] & lead4byte) &gt;&gt;&gt; 4);
+                        }
+                }
+
+                to.append(encodeTable[currentByte]);
+            }
+        }
+
+        if (to.length() % 4 != 0) {
+            for (i = 4 - to.length() % 4; i &gt; 0; --i) {
+                to.append("=");
+            }
+        }
+
+        return to.toString();
+    }
+</pre>
+                                            <br />
+                                            <b> <a> Clone 2 Location: </a> </b> <a> In line&nbsp;<b>21&nbsp;~&nbsp;67&nbsp;</b>of <b>wanxinp2p-consumer-service\src\main\java\com\wanxin\consumer\utils\Base64Util.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px" >
+    public static String encode(byte[] from) {
+        StringBuilder to = new StringBuilder((int) ((double) from.length * 1.34D) + 3);
+        int num = 0;
+        char currentByte = 0;
+
+        int i;
+        for (i = 0; i &lt; from.length; ++i) {
+            for (num %= 8; num &lt; 8; num += 6) {
+                switch (num) {
+                    case 0:
+                        currentByte = (char) (from[i] & lead6byte);
+                        currentByte = (char) (currentByte &gt;&gt;&gt; 2);
+                    case 1:
+                    case 3:
+                    case 5:
+                    default:
+                        break;
+                    case 2:
+                        currentByte = (char) (from[i] & last6byte);
+                        break;
+                    case 4:
+                        currentByte = (char) (from[i] & last4byte);
+                        currentByte = (char) (currentByte &lt;&lt; 2);
+                        if (i + 1 &lt; from.length) {
+                            currentByte = (char) (currentByte | (from[i + 1] & lead2byte) &gt;&gt;&gt; 6);
+                        }
+                        break;
+                    case 6:
+                        currentByte = (char) (from[i] & last2byte);
+                        currentByte = (char) (currentByte &lt;&lt; 4);
+                        if (i + 1 &lt; from.length) {
+                            currentByte = (char) (currentByte | (from[i + 1] & lead4byte) &gt;&gt;&gt; 4);
+                        }
+                }
+
+                to.append(encodeTable[currentByte]);
+            }
+        }
+
+        if (to.length() % 4 != 0) {
+            for (i = 4 - to.length() % 4; i &gt; 0; --i) {
+                to.append("=");
+            }
+        }
+
+        return to.toString();
+    }
+</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div>
+                            <div id="divpager-1"></div>
+                        </div>
+
+                    </div>
+                    <div class="layui-tab-item">
+                        <div class="layui-card" id="17" style="display:block">
+                            <div class="layui-card-header ">
+                                <h3>
+                                    <b><a>No.23</a></b>
+                                </h3>
+                            </div>
+                            <div class="layui-card-body">
+                                <div class="layui-word-aux">
+                                    <b> <a> Project: </a> </b> <a> e-commerce</a>
+                                    <br />
+                                    <b> <a> Category: </a> </b> <a> &nbsp;&nbsp; Other &rarr; Test Method &rarr; None</a>
+                                </div>
+                                <hr />
+                                <div class="layui-collapse" >
+                                    <div class="layui-colla-item" >
+                                        <h2 class="layui-colla-title">source code</h2>
+                                        <div class="layui-colla-content ">
+                                            <b> <a> Clone 1 Location: </a> </b> <a> In line&nbsp;<b>150&nbsp;~&nbsp;170&nbsp;</b>of <b>user-service\src\test\java\com\rainbowforest\userservice\controller\UserControllerTests.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px">
+    public void add_user_controller_should_return201_when_user_is_saved() throws Exception{
+    	//given
+    	User user = new User();
+    	user.setUserName(USER_NAME);
+    	ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
+        ObjectWriter objectWriter = mapper.writer().withDefaultPrettyPrinter();
+        String requestJson = objectWriter.writeValueAsString(user);
+
+    	//when
+    	when(userService.saveUser(new User())).thenReturn(user);
+
+    	//then
+    	mockMvc.perform(post("/users").content(requestJson).contentType(MediaType.APPLICATION_JSON_UTF8))
+    	.andExpect(status().isCreated())
+    	.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+    	.andExpect(jsonPath("$.userName").value(USER_NAME));
+
+    	verify(userService, times(1)).saveUser(any(User.class));
+    	verifyNoMoreInteractions(userService);
+    }
+</pre>
+                                            <br />
+                                            <b> <a> Clone 2 Location: </a> </b> <a> In line&nbsp;<b>42&nbsp;~&nbsp;65&nbsp;</b>of <b>product-catalog-service\src\test\java\com\rainbowforest\productcatalogservice\controller\AdminProductControllerTest.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px" >
+    public void add_product_controller_should_return201_when_product_isSaved() throws Exception {
+		//given
+		Product product = new Product();
+		product.setProductName(PRODUCT_NAME);
+		product.setCategory(PRODUCT_CATEGORY);
+
+    	ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
+        ObjectWriter objectWriter = mapper.writer().withDefaultPrettyPrinter();
+        String requestJson = objectWriter.writeValueAsString(product);
+
+        //when
+        when(productService.addProduct(new Product())).thenReturn(product);
+
+        //then
+        mockMvc.perform(post("/admin/products").content(requestJson).contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(status().isCreated())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(jsonPath("$.productName").value(PRODUCT_NAME))
+                .andExpect(jsonPath("$.category").value(PRODUCT_CATEGORY));
+
+    	verify(productService, times(1)).addProduct(any(Product.class));
+        verifyNoMoreInteractions(productService);
+    }
+</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-card" id="18" style="display:block">
+                            <div class="layui-card-header ">
+                                <h3>
+                                    <b><a>No.902</a></b>
+                                </h3>
+                            </div>
+                            <div class="layui-card-body">
+                                <div class="layui-word-aux">
+                                    <b> <a> Project: </a> </b> <a> train-ticket</a>
+                                    <br />
+                                    <b> <a> Category: </a> </b> <a> &nbsp;&nbsp; Other &rarr; Test Method &rarr; None</a>
+                                </div>
+                                <hr />
+                                <div class="layui-collapse" >
+                                    <div class="layui-colla-item" >
+                                        <h2 class="layui-colla-title">source code</h2>
+                                        <div class="layui-colla-content ">
+                                            <b> <a> Clone 1 Location: </a> </b> <a> In line&nbsp;<b>58&nbsp;~&nbsp;77&nbsp;</b>of <b>ts-admin-order-service\src\test\java\adminorder\service\AdminOrderServiceImplTest.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px">
+    public void testGetAllOrders2() {
+        ArrayList&lt;Order&gt; orders = new ArrayList&lt;&gt;();
+        orders.add(new Order());
+        Response&lt;ArrayList&lt;Order&gt;&gt; response = new Response&lt;&gt;(1, null, orders);
+        ResponseEntity&lt;Response&lt;ArrayList&lt;Order&gt;&gt;&gt; re = new ResponseEntity&lt;&gt;(response, HttpStatus.OK);
+        Mockito.when(restTemplate.exchange(
+                "http://ts-order-service:12031/api/v1/orderservice/order",
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference&lt;Response&lt;ArrayList&lt;Order&gt;&gt;&gt;() {
+                })).thenReturn(re);
+        Mockito.when(restTemplate.exchange(
+                "http://ts-order-other-service:12032/api/v1/orderOtherService/orderOther",
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference&lt;Response&lt;ArrayList&lt;Order&gt;&gt;&gt;() {
+                })).thenReturn(re);
+        Response result = adminOrderService.getAllOrders(headers);
+        Assert.assertNotNull(result);
+    }
+</pre>
+                                            <br />
+                                            <b> <a> Clone 2 Location: </a> </b> <a> In line&nbsp;<b>59&nbsp;~&nbsp;78&nbsp;</b>of <b>ts-admin-travel-service\src\test\java\admintravel\service\AdminTravelServiceImplTest.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px" >
+    public void testGetAllTravels2() {
+        ArrayList&lt;AdminTrip&gt; adminTrips = new ArrayList&lt;&gt;();
+        adminTrips.add(new AdminTrip());
+        Response&lt;ArrayList&lt;AdminTrip&gt;&gt; response = new Response&lt;&gt;(1, null, adminTrips);
+        ResponseEntity&lt;Response&lt;ArrayList&lt;AdminTrip&gt;&gt;&gt; re = new ResponseEntity&lt;&gt;(response, HttpStatus.OK);
+        Mockito.when(restTemplate.exchange(
+                "http://ts-travel-service:12346/api/v1/travelservice/admin_trip",
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference&lt;Response&lt;ArrayList&lt;AdminTrip&gt;&gt;&gt;() {
+                })).thenReturn(re);
+        Mockito.when(restTemplate.exchange(
+                "http://ts-travel2-service:16346/api/v1/travel2service/admin_trip",
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference&lt;Response&lt;ArrayList&lt;AdminTrip&gt;&gt;&gt;() {
+                })).thenReturn(re);
+        Response result = adminTravelServiceImpl.getAllTravels(headers);
+        Assert.assertNotNull(result);
+    }
+</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-card" id="19" style="display:block">
+                            <div class="layui-card-header ">
+                                <h3>
+                                    <b><a>No.930</a></b>
+                                </h3>
+                            </div>
+                            <div class="layui-card-body">
+                                <div class="layui-word-aux">
+                                    <b> <a> Project: </a> </b> <a> train-ticket</a>
+                                    <br />
+                                    <b> <a> Category: </a> </b> <a> &nbsp;&nbsp; Other &rarr; Test Method &rarr; None</a>
+                                </div>
+                                <hr />
+                                <div class="layui-collapse" >
+                                    <div class="layui-colla-item" >
+                                        <h2 class="layui-colla-title">source code</h2>
+                                        <div class="layui-colla-content ">
+                                            <b> <a> Clone 1 Location: </a> </b> <a> In line&nbsp;<b>118&nbsp;~&nbsp;149&nbsp;</b>of <b>ts-execute-service\src\test\java\execute\service\ExecuteServiceImplTest.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px">
+    public void testTicketCollect2() {
+        //mock getOrderByIdFromOrder(
+        Response&lt;Order&gt; response = new Response&lt;&gt;(0, null, null);
+        ResponseEntity&lt;Response&lt;Order&gt;&gt; re = new ResponseEntity&lt;&gt;(response, HttpStatus.OK);
+        Mockito.when(restTemplate.exchange(
+                "http://ts-order-service:12031/api/v1/orderservice/order/" + "order_id",
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference&lt;Response&lt;Order&gt;&gt;() {
+                })).thenReturn(re);
+        //mock getOrderByIdFromOrderOther()
+        Order order = new Order();
+        order.setStatus(1);
+        Response&lt;Order&gt; response2 = new Response&lt;&gt;(1, null, order);
+        ResponseEntity&lt;Response&lt;Order&gt;&gt; re2 = new ResponseEntity&lt;&gt;(response2, HttpStatus.OK);
+        Mockito.when(restTemplate.exchange(
+                "http://ts-order-other-service:12032/api/v1/orderOtherService/orderOther/" + "order_id",
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference&lt;Response&lt;Order&gt;&gt;() {
+                })).thenReturn(re2);
+        //mock executeOrderOther()
+        Response response3 = new Response(1, null, null);
+        ResponseEntity&lt;Response&gt; re3 = new ResponseEntity&lt;&gt;(response3, HttpStatus.OK);
+        Mockito.when(restTemplate.exchange(
+                "http://ts-order-other-service:12032/api/v1/orderOtherService/orderOther/status/" + "order_id" + "/" + 2,
+                HttpMethod.GET,
+                requestEntity,
+                Response.class)).thenReturn(re3);
+        Response result = executeServiceImpl.ticketCollect("order_id", headers);
+        Assert.assertEquals(new Response&lt;&gt;(1, "Success.", null), result);
+    }
+</pre>
+                                            <br />
+                                            <b> <a> Clone 2 Location: </a> </b> <a> In line&nbsp;<b>55&nbsp;~&nbsp;78&nbsp;</b>of <b>ts-cancel-service\src\test\java\cancel\service\CancelServiceImplTest.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px" >
+    public void testCancelOrder2() {
+        //mock getOrderByIdFromOrder()
+        Response&lt;Order&gt; response = new Response&lt;&gt;(0, null, null);
+        ResponseEntity&lt;Response&lt;Order&gt;&gt; re = new ResponseEntity&lt;&gt;(response, HttpStatus.OK);
+        Mockito.when(restTemplate.exchange(
+                "http://ts-order-service:12031/api/v1/orderservice/order/" + "order_id",
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference&lt;Response&lt;Order&gt;&gt;() {
+                })).thenReturn(re);
+        //mock getOrderByIdFromOrderOther()
+        Order order = new Order();
+        order.setStatus(6);
+        Response&lt;Order&gt; response2 = new Response&lt;&gt;(1, null, order);
+        ResponseEntity&lt;Response&lt;Order&gt;&gt; re2 = new ResponseEntity&lt;&gt;(response2, HttpStatus.OK);
+        Mockito.when(restTemplate.exchange(
+                "http://ts-order-other-service:12032/api/v1/orderOtherService/orderOther/" + "order_id",
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference&lt;Response&lt;Order&gt;&gt;() {
+                })).thenReturn(re2);
+        Response result = cancelServiceImpl.cancelOrder("order_id", "login_id", headers);
+        Assert.assertEquals(new Response&lt;&gt;(0, "Order Status Cancel Not Permitted", null), result);
+    }
+</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-card" id="20" style="display:block">
+                            <div class="layui-card-header ">
+                                <h3>
+                                    <b><a>No.931</a></b>
+                                </h3>
+                            </div>
+                            <div class="layui-card-body">
+                                <div class="layui-word-aux">
+                                    <b> <a> Project: </a> </b> <a> train-ticket</a>
+                                    <br />
+                                    <b> <a> Category: </a> </b> <a> &nbsp;&nbsp; Other &rarr; Test Method &rarr; None</a>
+                                </div>
+                                <hr />
+                                <div class="layui-collapse" >
+                                    <div class="layui-colla-item" >
+                                        <h2 class="layui-colla-title">source code</h2>
+                                        <div class="layui-colla-content ">
+                                            <b> <a> Clone 1 Location: </a> </b> <a> In line&nbsp;<b>118&nbsp;~&nbsp;149&nbsp;</b>of <b>ts-execute-service\src\test\java\execute\service\ExecuteServiceImplTest.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px">
+    public void testTicketCollect2() {
+        //mock getOrderByIdFromOrder(
+        Response&lt;Order&gt; response = new Response&lt;&gt;(0, null, null);
+        ResponseEntity&lt;Response&lt;Order&gt;&gt; re = new ResponseEntity&lt;&gt;(response, HttpStatus.OK);
+        Mockito.when(restTemplate.exchange(
+                "http://ts-order-service:12031/api/v1/orderservice/order/" + "order_id",
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference&lt;Response&lt;Order&gt;&gt;() {
+                })).thenReturn(re);
+        //mock getOrderByIdFromOrderOther()
+        Order order = new Order();
+        order.setStatus(1);
+        Response&lt;Order&gt; response2 = new Response&lt;&gt;(1, null, order);
+        ResponseEntity&lt;Response&lt;Order&gt;&gt; re2 = new ResponseEntity&lt;&gt;(response2, HttpStatus.OK);
+        Mockito.when(restTemplate.exchange(
+                "http://ts-order-other-service:12032/api/v1/orderOtherService/orderOther/" + "order_id",
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference&lt;Response&lt;Order&gt;&gt;() {
+                })).thenReturn(re2);
+        //mock executeOrderOther()
+        Response response3 = new Response(1, null, null);
+        ResponseEntity&lt;Response&gt; re3 = new ResponseEntity&lt;&gt;(response3, HttpStatus.OK);
+        Mockito.when(restTemplate.exchange(
+                "http://ts-order-other-service:12032/api/v1/orderOtherService/orderOther/status/" + "order_id" + "/" + 2,
+                HttpMethod.GET,
+                requestEntity,
+                Response.class)).thenReturn(re3);
+        Response result = executeServiceImpl.ticketCollect("order_id", headers);
+        Assert.assertEquals(new Response&lt;&gt;(1, "Success.", null), result);
+    }
+</pre>
+                                            <br />
+                                            <b> <a> Clone 2 Location: </a> </b> <a> In line&nbsp;<b>112&nbsp;~&nbsp;135&nbsp;</b>of <b>ts-cancel-service\src\test\java\cancel\service\CancelServiceImplTest.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px" >
+    public void testCalculateRefund2() {
+        //mock getOrderByIdFromOrder()
+        Response&lt;Order&gt; response = new Response&lt;&gt;(0, null, null);
+        ResponseEntity&lt;Response&lt;Order&gt;&gt; re = new ResponseEntity&lt;&gt;(response, HttpStatus.OK);
+        Mockito.when(restTemplate.exchange(
+                "http://ts-order-service:12031/api/v1/orderservice/order/" + "order_id",
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference&lt;Response&lt;Order&gt;&gt;() {
+                })).thenReturn(re);
+        //mock getOrderByIdFromOrderOther()
+        Order order = new Order();
+        order.setStatus(6);
+        Response&lt;Order&gt; response2 = new Response&lt;&gt;(1, null, order);
+        ResponseEntity&lt;Response&lt;Order&gt;&gt; re2 = new ResponseEntity&lt;&gt;(response2, HttpStatus.OK);
+        Mockito.when(restTemplate.exchange(
+                "http://ts-order-other-service:12032/api/v1/orderOtherService/orderOther/" + "order_id",
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference&lt;Response&lt;Order&gt;&gt;() {
+                })).thenReturn(re2);
+        Response result = cancelServiceImpl.calculateRefund("order_id", headers);
+        Assert.assertEquals(new Response&lt;&gt;(0, "Order Status Cancel Not Permitted", null), result);
+    }
+</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-card" id="21" style="display:block">
+                            <div class="layui-card-header ">
+                                <h3>
+                                    <b><a>No.932</a></b>
+                                </h3>
+                            </div>
+                            <div class="layui-card-body">
+                                <div class="layui-word-aux">
+                                    <b> <a> Project: </a> </b> <a> train-ticket</a>
+                                    <br />
+                                    <b> <a> Category: </a> </b> <a> &nbsp;&nbsp; Other &rarr; Test Method &rarr; None</a>
+                                </div>
+                                <hr />
+                                <div class="layui-collapse" >
+                                    <div class="layui-colla-item" >
+                                        <h2 class="layui-colla-title">source code</h2>
+                                        <div class="layui-colla-content ">
+                                            <b> <a> Clone 1 Location: </a> </b> <a> In line&nbsp;<b>59&nbsp;~&nbsp;90&nbsp;</b>of <b>ts-execute-service\src\test\java\execute\service\ExecuteServiceImplTest.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px">
+    public void testTicketExecute2() {
+        //mock getOrderByIdFromOrder(
+        Response&lt;Order&gt; response = new Response&lt;&gt;(0, null, null);
+        ResponseEntity&lt;Response&lt;Order&gt;&gt; re = new ResponseEntity&lt;&gt;(response, HttpStatus.OK);
+        Mockito.when(restTemplate.exchange(
+                "http://ts-order-service:12031/api/v1/orderservice/order/" + "order_id",
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference&lt;Response&lt;Order&gt;&gt;() {
+                })).thenReturn(re);
+        //mock getOrderByIdFromOrderOther()
+        Order order = new Order();
+        order.setStatus(2);
+        Response&lt;Order&gt; response2 = new Response&lt;&gt;(1, null, order);
+        ResponseEntity&lt;Response&lt;Order&gt;&gt; re2 = new ResponseEntity&lt;&gt;(response2, HttpStatus.OK);
+        Mockito.when(restTemplate.exchange(
+                "http://ts-order-other-service:12032/api/v1/orderOtherService/orderOther/" + "order_id",
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference&lt;Response&lt;Order&gt;&gt;() {
+                })).thenReturn(re2);
+        //mock executeOrderOther()
+        Response response3 = new Response(1, null, null);
+        ResponseEntity&lt;Response&gt; re3 = new ResponseEntity&lt;&gt;(response3, HttpStatus.OK);
+        Mockito.when(restTemplate.exchange(
+                "http://ts-order-other-service:12032/api/v1/orderOtherService/orderOther/status/" + "order_id" + "/" + 6,
+                HttpMethod.GET,
+                requestEntity,
+                Response.class)).thenReturn(re3);
+        Response result = executeServiceImpl.ticketExecute("order_id", headers);
+        Assert.assertEquals(new Response&lt;&gt;(1, "Success", null), result);
+    }
+</pre>
+                                            <br />
+                                            <b> <a> Clone 2 Location: </a> </b> <a> In line&nbsp;<b>55&nbsp;~&nbsp;78&nbsp;</b>of <b>ts-cancel-service\src\test\java\cancel\service\CancelServiceImplTest.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px" >
+    public void testCancelOrder2() {
+        //mock getOrderByIdFromOrder()
+        Response&lt;Order&gt; response = new Response&lt;&gt;(0, null, null);
+        ResponseEntity&lt;Response&lt;Order&gt;&gt; re = new ResponseEntity&lt;&gt;(response, HttpStatus.OK);
+        Mockito.when(restTemplate.exchange(
+                "http://ts-order-service:12031/api/v1/orderservice/order/" + "order_id",
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference&lt;Response&lt;Order&gt;&gt;() {
+                })).thenReturn(re);
+        //mock getOrderByIdFromOrderOther()
+        Order order = new Order();
+        order.setStatus(6);
+        Response&lt;Order&gt; response2 = new Response&lt;&gt;(1, null, order);
+        ResponseEntity&lt;Response&lt;Order&gt;&gt; re2 = new ResponseEntity&lt;&gt;(response2, HttpStatus.OK);
+        Mockito.when(restTemplate.exchange(
+                "http://ts-order-other-service:12032/api/v1/orderOtherService/orderOther/" + "order_id",
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference&lt;Response&lt;Order&gt;&gt;() {
+                })).thenReturn(re2);
+        Response result = cancelServiceImpl.cancelOrder("order_id", "login_id", headers);
+        Assert.assertEquals(new Response&lt;&gt;(0, "Order Status Cancel Not Permitted", null), result);
+    }
+</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-card" id="22" style="display:block">
+                            <div class="layui-card-header ">
+                                <h3>
+                                    <b><a>No.933</a></b>
+                                </h3>
+                            </div>
+                            <div class="layui-card-body">
+                                <div class="layui-word-aux">
+                                    <b> <a> Project: </a> </b> <a> train-ticket</a>
+                                    <br />
+                                    <b> <a> Category: </a> </b> <a> &nbsp;&nbsp; Other &rarr; Test Method &rarr; None</a>
+                                </div>
+                                <hr />
+                                <div class="layui-collapse" >
+                                    <div class="layui-colla-item" >
+                                        <h2 class="layui-colla-title">source code</h2>
+                                        <div class="layui-colla-content ">
+                                            <b> <a> Clone 1 Location: </a> </b> <a> In line&nbsp;<b>59&nbsp;~&nbsp;90&nbsp;</b>of <b>ts-execute-service\src\test\java\execute\service\ExecuteServiceImplTest.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px">
+    public void testTicketExecute2() {
+        //mock getOrderByIdFromOrder(
+        Response&lt;Order&gt; response = new Response&lt;&gt;(0, null, null);
+        ResponseEntity&lt;Response&lt;Order&gt;&gt; re = new ResponseEntity&lt;&gt;(response, HttpStatus.OK);
+        Mockito.when(restTemplate.exchange(
+                "http://ts-order-service:12031/api/v1/orderservice/order/" + "order_id",
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference&lt;Response&lt;Order&gt;&gt;() {
+                })).thenReturn(re);
+        //mock getOrderByIdFromOrderOther()
+        Order order = new Order();
+        order.setStatus(2);
+        Response&lt;Order&gt; response2 = new Response&lt;&gt;(1, null, order);
+        ResponseEntity&lt;Response&lt;Order&gt;&gt; re2 = new ResponseEntity&lt;&gt;(response2, HttpStatus.OK);
+        Mockito.when(restTemplate.exchange(
+                "http://ts-order-other-service:12032/api/v1/orderOtherService/orderOther/" + "order_id",
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference&lt;Response&lt;Order&gt;&gt;() {
+                })).thenReturn(re2);
+        //mock executeOrderOther()
+        Response response3 = new Response(1, null, null);
+        ResponseEntity&lt;Response&gt; re3 = new ResponseEntity&lt;&gt;(response3, HttpStatus.OK);
+        Mockito.when(restTemplate.exchange(
+                "http://ts-order-other-service:12032/api/v1/orderOtherService/orderOther/status/" + "order_id" + "/" + 6,
+                HttpMethod.GET,
+                requestEntity,
+                Response.class)).thenReturn(re3);
+        Response result = executeServiceImpl.ticketExecute("order_id", headers);
+        Assert.assertEquals(new Response&lt;&gt;(1, "Success", null), result);
+    }
+</pre>
+                                            <br />
+                                            <b> <a> Clone 2 Location: </a> </b> <a> In line&nbsp;<b>112&nbsp;~&nbsp;135&nbsp;</b>of <b>ts-cancel-service\src\test\java\cancel\service\CancelServiceImplTest.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px" >
+    public void testCalculateRefund2() {
+        //mock getOrderByIdFromOrder()
+        Response&lt;Order&gt; response = new Response&lt;&gt;(0, null, null);
+        ResponseEntity&lt;Response&lt;Order&gt;&gt; re = new ResponseEntity&lt;&gt;(response, HttpStatus.OK);
+        Mockito.when(restTemplate.exchange(
+                "http://ts-order-service:12031/api/v1/orderservice/order/" + "order_id",
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference&lt;Response&lt;Order&gt;&gt;() {
+                })).thenReturn(re);
+        //mock getOrderByIdFromOrderOther()
+        Order order = new Order();
+        order.setStatus(6);
+        Response&lt;Order&gt; response2 = new Response&lt;&gt;(1, null, order);
+        ResponseEntity&lt;Response&lt;Order&gt;&gt; re2 = new ResponseEntity&lt;&gt;(response2, HttpStatus.OK);
+        Mockito.when(restTemplate.exchange(
+                "http://ts-order-other-service:12032/api/v1/orderOtherService/orderOther/" + "order_id",
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference&lt;Response&lt;Order&gt;&gt;() {
+                })).thenReturn(re2);
+        Response result = cancelServiceImpl.calculateRefund("order_id", headers);
+        Assert.assertEquals(new Response&lt;&gt;(0, "Order Status Cancel Not Permitted", null), result);
+    }
+</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-card" id="23" style="display:block">
+                            <div class="layui-card-header ">
+                                <h3>
+                                    <b><a>No.938</a></b>
+                                </h3>
+                            </div>
+                            <div class="layui-card-body">
+                                <div class="layui-word-aux">
+                                    <b> <a> Project: </a> </b> <a> train-ticket</a>
+                                    <br />
+                                    <b> <a> Category: </a> </b> <a> &nbsp;&nbsp; Other &rarr; Test Method &rarr; None</a>
+                                </div>
+                                <hr />
+                                <div class="layui-collapse" >
+                                    <div class="layui-colla-item" >
+                                        <h2 class="layui-colla-title">source code</h2>
+                                        <div class="layui-colla-content ">
+                                            <b> <a> Clone 1 Location: </a> </b> <a> In line&nbsp;<b>34&nbsp;~&nbsp;56&nbsp;</b>of <b>ts-execute-service\src\test\java\execute\service\ExecuteServiceImplTest.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px">
+    public void testTicketExecute1() {
+        //mock getOrderByIdFromOrder()
+        Order order = new Order();
+        order.setStatus(2);
+        Response&lt;Order&gt; response = new Response&lt;&gt;(1, null, order);
+        ResponseEntity&lt;Response&lt;Order&gt;&gt; re = new ResponseEntity&lt;&gt;(response, HttpStatus.OK);
+        Mockito.when(restTemplate.exchange(
+                "http://ts-order-service:12031/api/v1/orderservice/order/" + "order_id",
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference&lt;Response&lt;Order&gt;&gt;() {
+                })).thenReturn(re);
+        //mock executeOrder()
+        Response response2 = new Response(1, null, null);
+        ResponseEntity&lt;Response&gt; re2 = new ResponseEntity&lt;&gt;(response2, HttpStatus.OK);
+        Mockito.when(restTemplate.exchange(
+                "http://ts-order-service:12031/api/v1/orderservice/order/status/" + "order_id" + "/" + 6,
+                HttpMethod.GET,
+                requestEntity,
+                Response.class)).thenReturn(re2);
+        Response result = executeServiceImpl.ticketExecute("order_id", headers);
+        Assert.assertEquals(new Response&lt;&gt;(1, "Success.", null), result);
+    }
+</pre>
+                                            <br />
+                                            <b> <a> Clone 2 Location: </a> </b> <a> In line&nbsp;<b>95&nbsp;~&nbsp;109&nbsp;</b>of <b>ts-cancel-service\src\test\java\cancel\service\CancelServiceImplTest.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px" >
+    public void testCalculateRefund1() {
+        //mock getOrderByIdFromOrder()
+        Order order = new Order();
+        order.setStatus(6);
+        Response&lt;Order&gt; response = new Response&lt;&gt;(1, null, order);
+        ResponseEntity&lt;Response&lt;Order&gt;&gt; re = new ResponseEntity&lt;&gt;(response, HttpStatus.OK);
+        Mockito.when(restTemplate.exchange(
+                "http://ts-order-service:12031/api/v1/orderservice/order/" + "order_id",
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference&lt;Response&lt;Order&gt;&gt;() {
+                })).thenReturn(re);
+        Response result = cancelServiceImpl.calculateRefund("order_id", headers);
+        Assert.assertEquals(new Response&lt;&gt;(0, "Order Status Cancel Not Permitted, Refound error", null), result);
+    }
+</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-card" id="24" style="display:block">
+                            <div class="layui-card-header ">
+                                <h3>
+                                    <b><a>No.939</a></b>
+                                </h3>
+                            </div>
+                            <div class="layui-card-body">
+                                <div class="layui-word-aux">
+                                    <b> <a> Project: </a> </b> <a> train-ticket</a>
+                                    <br />
+                                    <b> <a> Category: </a> </b> <a> &nbsp;&nbsp; Other &rarr; Test Method &rarr; None</a>
+                                </div>
+                                <hr />
+                                <div class="layui-collapse" >
+                                    <div class="layui-colla-item" >
+                                        <h2 class="layui-colla-title">source code</h2>
+                                        <div class="layui-colla-content ">
+                                            <b> <a> Clone 1 Location: </a> </b> <a> In line&nbsp;<b>93&nbsp;~&nbsp;115&nbsp;</b>of <b>ts-execute-service\src\test\java\execute\service\ExecuteServiceImplTest.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px">
+    public void testTicketCollect1() {
+        //mock getOrderByIdFromOrder()
+        Order order = new Order();
+        order.setStatus(1);
+        Response&lt;Order&gt; response = new Response&lt;&gt;(1, null, order);
+        ResponseEntity&lt;Response&lt;Order&gt;&gt; re = new ResponseEntity&lt;&gt;(response, HttpStatus.OK);
+        Mockito.when(restTemplate.exchange(
+                "http://ts-order-service:12031/api/v1/orderservice/order/" + "order_id",
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference&lt;Response&lt;Order&gt;&gt;() {
+                })).thenReturn(re);
+        //mock executeOrder()
+        Response response2 = new Response(1, null, null);
+        ResponseEntity&lt;Response&gt; re2 = new ResponseEntity&lt;&gt;(response2, HttpStatus.OK);
+        Mockito.when(restTemplate.exchange(
+                "http://ts-order-service:12031/api/v1/orderservice/order/status/" + "order_id" + "/" + 2,
+                HttpMethod.GET,
+                requestEntity,
+                Response.class)).thenReturn(re2);
+        Response result = executeServiceImpl.ticketCollect("order_id", headers);
+        Assert.assertEquals(new Response&lt;&gt;(1, "Success", null), result);
+    }
+</pre>
+                                            <br />
+                                            <b> <a> Clone 2 Location: </a> </b> <a> In line&nbsp;<b>95&nbsp;~&nbsp;109&nbsp;</b>of <b>ts-cancel-service\src\test\java\cancel\service\CancelServiceImplTest.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px" >
+    public void testCalculateRefund1() {
+        //mock getOrderByIdFromOrder()
+        Order order = new Order();
+        order.setStatus(6);
+        Response&lt;Order&gt; response = new Response&lt;&gt;(1, null, order);
+        ResponseEntity&lt;Response&lt;Order&gt;&gt; re = new ResponseEntity&lt;&gt;(response, HttpStatus.OK);
+        Mockito.when(restTemplate.exchange(
+                "http://ts-order-service:12031/api/v1/orderservice/order/" + "order_id",
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference&lt;Response&lt;Order&gt;&gt;() {
+                })).thenReturn(re);
+        Response result = cancelServiceImpl.calculateRefund("order_id", headers);
+        Assert.assertEquals(new Response&lt;&gt;(0, "Order Status Cancel Not Permitted, Refound error", null), result);
+    }
+</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-card" id="25" style="display:block">
+                            <div class="layui-card-header ">
+                                <h3>
+                                    <b><a>No.947</a></b>
+                                </h3>
+                            </div>
+                            <div class="layui-card-body">
+                                <div class="layui-word-aux">
+                                    <b> <a> Project: </a> </b> <a> train-ticket</a>
+                                    <br />
+                                    <b> <a> Category: </a> </b> <a> &nbsp;&nbsp; Other &rarr; Test Method &rarr; None</a>
+                                </div>
+                                <hr />
+                                <div class="layui-collapse" >
+                                    <div class="layui-colla-item" >
+                                        <h2 class="layui-colla-title">source code</h2>
+                                        <div class="layui-colla-content ">
+                                            <b> <a> Clone 1 Location: </a> </b> <a> In line&nbsp;<b>138&nbsp;~&nbsp;152&nbsp;</b>of <b>ts-preserve-service\src\test\java\preserve\service\PreserveServiceImplTest.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px">
+    public void testDipatchSeat() {
+        long mills = System.currentTimeMillis();
+        Seat seatRequest = new Seat(new Date(mills), "G1234", "start_station", "dest_station", 2);
+        HttpEntity requestEntityTicket = new HttpEntity(seatRequest, headers);
+        Response&lt;Ticket&gt; response = new Response&lt;&gt;();
+        ResponseEntity&lt;Response&lt;Ticket&gt;&gt; reTicket = new ResponseEntity&lt;&gt;(response, HttpStatus.OK);
+        Mockito.when(restTemplate.exchange(
+                "http://ts-seat-service:18898/api/v1/seatservice/seats",
+                HttpMethod.POST,
+                requestEntityTicket,
+                new ParameterizedTypeReference&lt;Response&lt;Ticket&gt;&gt;() {
+                })).thenReturn(reTicket);
+        Ticket result = preserveServiceImpl.dipatchSeat(new Date(mills), "G1234", "start_station", "dest_station", 2, headers);
+        Assert.assertNull(result);
+    }
+</pre>
+                                            <br />
+                                            <b> <a> Clone 2 Location: </a> </b> <a> In line&nbsp;<b>125&nbsp;~&nbsp;139&nbsp;</b>of <b>ts-rebook-service\src\test\java\rebook\service\RebookServiceImplTest.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px" >
+    public void testDipatchSeat() {
+        long mills = System.currentTimeMillis();
+        Seat seatRequest = new Seat(new Date(mills), "G1234", "start_station", "dest_station", 2);
+        HttpEntity requestEntityTicket = new HttpEntity&lt;&gt;(seatRequest, headers);
+        Response&lt;Ticket&gt; response = new Response&lt;&gt;();
+        ResponseEntity&lt;Response&lt;Ticket&gt;&gt; reTicket = new ResponseEntity&lt;&gt;(response, HttpStatus.OK);
+        Mockito.when(restTemplate.exchange(
+                "http://ts-seat-service:18898/api/v1/seatservice/seats",
+                HttpMethod.POST,
+                requestEntityTicket,
+                new ParameterizedTypeReference&lt;Response&lt;Ticket&gt;&gt;() {
+                })).thenReturn(reTicket);
+        Ticket result = rebookServiceImpl.dipatchSeat(new Date(mills), "G1234", "start_station", "dest_station", 2, headers);
+        Assert.assertNull(result);
+    }
+</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-card" id="26" style="display:block">
+                            <div class="layui-card-header ">
+                                <h3>
+                                    <b><a>No.948</a></b>
+                                </h3>
+                            </div>
+                            <div class="layui-card-body">
+                                <div class="layui-word-aux">
+                                    <b> <a> Project: </a> </b> <a> train-ticket</a>
+                                    <br />
+                                    <b> <a> Category: </a> </b> <a> &nbsp;&nbsp; Other &rarr; Test Method &rarr; None</a>
+                                </div>
+                                <hr />
+                                <div class="layui-collapse" >
+                                    <div class="layui-colla-item" >
+                                        <h2 class="layui-colla-title">source code</h2>
+                                        <div class="layui-colla-content ">
+                                            <b> <a> Clone 1 Location: </a> </b> <a> In line&nbsp;<b>38&nbsp;~&nbsp;55&nbsp;</b>of <b>ts-admin-order-service\src\test\java\adminorder\service\AdminOrderServiceImplTest.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px">
+    public void testGetAllOrders1() {
+        Response&lt;ArrayList&lt;Order&gt;&gt; response = new Response&lt;&gt;(0, null, null);
+        ResponseEntity&lt;Response&lt;ArrayList&lt;Order&gt;&gt;&gt; re = new ResponseEntity&lt;&gt;(response, HttpStatus.OK);
+        Mockito.when(restTemplate.exchange(
+                "http://ts-order-service:12031/api/v1/orderservice/order",
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference&lt;Response&lt;ArrayList&lt;Order&gt;&gt;&gt;() {
+                })).thenReturn(re);
+        Mockito.when(restTemplate.exchange(
+                "http://ts-order-other-service:12032/api/v1/orderOtherService/orderOther",
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference&lt;Response&lt;ArrayList&lt;Order&gt;&gt;&gt;() {
+                })).thenReturn(re);
+        Response result = adminOrderService.getAllOrders(headers);
+        Assert.assertEquals(new Response&lt;&gt;(1, "Get the orders successfully!", new ArrayList&lt;&gt;()), result);
+    }
+</pre>
+                                            <br />
+                                            <b> <a> Clone 2 Location: </a> </b> <a> In line&nbsp;<b>39&nbsp;~&nbsp;56&nbsp;</b>of <b>ts-admin-travel-service\src\test\java\admintravel\service\AdminTravelServiceImplTest.java</b></a>
+                                            <br />
+                                            <pre class="layui-code" lay-skin="notepad" lay-height="300px" >
+    public void testGetAllTravels1() {
+        Response&lt;ArrayList&lt;AdminTrip&gt;&gt; response = new Response&lt;&gt;(0, null, null);
+        ResponseEntity&lt;Response&lt;ArrayList&lt;AdminTrip&gt;&gt;&gt; re = new ResponseEntity&lt;&gt;(response, HttpStatus.OK);
+        Mockito.when(restTemplate.exchange(
+                "http://ts-travel-service:12346/api/v1/travelservice/admin_trip",
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference&lt;Response&lt;ArrayList&lt;AdminTrip&gt;&gt;&gt;() {
+                })).thenReturn(re);
+        Mockito.when(restTemplate.exchange(
+                "http://ts-travel2-service:16346/api/v1/travel2service/admin_trip",
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference&lt;Response&lt;ArrayList&lt;AdminTrip&gt;&gt;&gt;() {
+                })).thenReturn(re);
+        Response result = adminTravelServiceImpl.getAllTravels(headers);
+        Assert.assertEquals(new Response&lt;&gt;(0, null, new ArrayList&lt;&gt;()), result);
+    }
+</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    <div>
+                        <div id="divpager-2"></div>
+                    </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    </div>
+</div>
+    <script>
+        $(function () {
+            layui.use(['laypage', 'layer'], function () {
+                var laypage = layui.laypage
+                    , layer = layui.layer;
+
+                laypage.render({
+                    elem: 'divpager-1'
+                    , count: 16
+                    , curr: 1
+                    , limit: __PageSize
+                    , jump: function (obj, first) {
+                        page = obj.curr;
+                        size = obj.limit;
+                        for(i = 1;i <= obj.count;i++){
+                            document.getElementById(i).style.display="none";
+                        }
+                        for (i = size * (page - 1) + 1;i <= size* page;i++){
+                            if(i <= obj.count){
+                                document.getElementById(i).style.display = "block";
+                            }
+                        }
+
+
+                        if (!first) {
+
+                        }
+                    }
+                });
+                laypage.render({
+                    elem: 'divpager-2'
+                    , count: 10
+                    , curr: 1
+                    , limit: __PageSize
+                    , jump: function (obj, first) {
+                        page = obj.curr;
+                        size = obj.limit;
+                        for(i = 17;i <= obj.count + 16;i++){
+                            document.getElementById(i).style.display="none";
+                        }
+                        for (i = size * (page - 1) + 17;i <= size* page + 16;i++){
+                            if(i <= obj.count + 16){
+                                document.getElementById(i).style.display = "block";
+                            }
+                        }
+                        if (!first) {
+
+                        }
+                    }
+                });
+
+
+
+            });
+        })
+    </script>
+
+    <script>
+        //注意：导航 依赖 element 模块，否则无法进行功能性操作
+        layui.use('element', function () {
+            var element = layui.element;
+
+        });
+
+        document.onkeydown = function (e) { // 回车提交表单
+            // 兼容FF和IE和Opera
+            var theEvent = window.event || e;
+            var code = theEvent.keyCode || theEvent.which || theEvent.charCode;
+            if (code == 13) {
+                likesearch();
+            }
+        }
+
+        function likesearch() {
+            var liketxt = $("#LikeKey").val();
+            var url = 'http://g4.net.cn/Home/Search' + "?likekey=" + liketxt;
+            document.location.href = url;
+        }
+    </script>
+
+    <script>
+        function handleFiles() {
+            var reader = new FileReader();
+            reader.onload = function (){
+
+
+            }
+
+
+            // var selectedFile = document.getElementById("files").files[0];
+            // var name = selectedFile.name;
+            // var size = selectedFile.size;
+            // console.log("文件名:"+name+"大小："+size);
+            // var reader = new FileReader();
+            // reader.readAsText(selectedFile);
+            //
+            // reader.onload = function(){
+            //     console.log("读取结果：", this.result);
+            //
+            //     console.log("读取结果转为JSON：");
+            //     let json = JSON.parse(this.result);
+            //     console.log(json.name);
+            //     console.log(json.age);
+            //};
+        }
+    </script>
+
+
+</body>
+</html>
