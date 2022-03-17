@@ -1,0 +1,71 @@
+/*左边部分*/
+*{text-decoration:none;}
+.maincontent{width:1000px;margin:0 auto;}
+.leftcontent{width:627px;float:left;}
+.snav{height:40px;line-height:40px;font-size:16px;border-bottom:1px solid #D5D5D5;}
+.snav a{color:#0E1619;}
+.snav a.current{color:#349B52;}
+.title{height: 42px;line-height: 42px;font-size:23px;font-weight:normal;}
+.tips{font-size:14px;color:#999;line-height:28px;margin:5px 0 10px 0;}
+.tips span{padding:0px 20px 0px 0px;}
+.content p{text-align:left;font-size:15px;line-height:30px;color:#666;text-indent:2em;margin-top:10px;}
+.like{background:#F8F6F7;border:1px solid #EFEFEF;height:46px;line-height:46px;margin-top:20px;padding-left:2px;}
+.like span{color:#48A360;font-size:18px;font-weight: bold;}
+.like a{color:#666;margin-left:20px;font-size:15px;}
+.tuijian{font-size:18px;color:#48A360;margin-top:20px;width:627px;float:left;}
+.tj1{height:42px;border-bottom:1px solid #d9d8d7;padding-bottom:15px;}
+.tuijian span{display:block;height:42px;width:80px;border-bottom:1px solid #39ad5a;padding-left:2px;line-height:42px;padding-bottom:15px;font-weight: bold;}
+.tuijian ul li{float:left;list-style:none;padding-right:25px;}
+.tuijian ul{padding-top:10px;margin-top:10px;}
+.tuijian ul li span.tui{display:inline;border:none;margin-right:3px;font-size:14px;}
+.tuijian ul li a{color:#666;font-size:15px;font-weight:normal;}
+.tuijian ul li a:hover img{filter:alpha(Opacity=80);-moz-opacity:0.8;opacity:0.3;} 
+.tuijian ul li.pic{margin:20px 0 0 13px;padding-right:0;}
+.tuijian ul li.bianju{margin-left:0;}
+.tuijian ul li span.txt{height:30px;line-height:30px;border:none;width:200px;padding:0;text-align:center;font-size:15px;font-weight:normal;}
+
+.tuijian .txt1,.tuijian .txt2{width:300px;float:left;margin-top:20px;}
+.tuijian .txt2{margin-left:23px;}
+.txt1 p,.txt2 p{text-align:left;line-height:40px;background:url("../images/hsj.jpg") no-repeat left center;padding-left:15px;font-weight:normal;
+               font-size:15px;border-bottom:1px dashed #dbdbdb;overflow:hidden;}
+.txt1 p a,.txt2 p a{color:#666;}
+.txt2 p a:hover{color:#f9ad2a;text-decoration:underline;}
+.txt1 p a:hover{color:#f9ad2a;text-decoration:underline;}
+.smalltag{margin-top:20px;overflow:hidden;width:627px;height:40px;}
+.smalltag p{display:inline-block;}
+.smalltag strong{padding-right:12px;font-size:16px;font-weight:normal;color:#000;}
+.smalltag font{font-size:16px;color:#39ad5a;}
+.smalltag a{color:#666;font-size:13px;display:inline-block;line-height:30px;height:30px;margin-left:10px;background:#F2F2F2;padding:0 7px;border-radius:5px;}
+.smalltag a:hover{color:#fff;background:#39ad5a;}
+
+
+/*右边部分*/
+.rightcontent{width:350px;float:right;height:1000px;}
+h1{height:42px;line-height:42px;font-size:22px;margin-top:25px;font-weight:normal;padding-left:5px;}
+.week{width:350px;overflow:hidden;}
+.tupian{width:350px;margin-top:15px;float:left;}
+.tupian ul li{float:left;list-style:none;width:165px;height:150px;position:relative;}
+.tupian ul li span{display:inline-block;position:absolute;width:165px;height:30px;line-height:30px;text-align:center;bottom:0;left:0;overflow:hidden;font-size:15px;background:rgba(0,0,0,0.4);}
+.tupian ul li:last-child{margin-left:20px;}
+.tupian span a{color:#fff;}
+.tupian span a.a1{display:block;}
+.tupian span a.a1:hover{background:#fba331;}
+.txtbox1{border-bottom:1px dotted #e6e5e3;width:350px;float:right;margin-top:20px;padding-bottom:10px;}
+.txtbox1 p{font-size:15px;line-height:40px;}
+.txtbox1 p a{color:#666;}
+.txtbox1 p a:hover{color:#f9920c;}
+.txtbox1 p em{float:left;width:22px;height:22px;line-height: 22px;border-radius: 3px;text-align:center;color:#FFF;background:#DDD;
+             font-size:11px;margin-right:8px;font-style:normal;font-weight:normal;margin-top:8px;}
+.txtbox1 p em.e1{background:#F90;}
+.picture1{margin-top:20px;}
+.picture1 ul li{float:right;list-style:none;width:165px;height:160px;}
+.picture1 ul li:nth-child(2n+1){margin-left:20px;}
+.picture1 ul li p{font-size:14px;line-height:15px;color:#666;} 
+.rightpic{clear:both;}
+h2{height:42px;line-height:42px;font-size:22px;margin-top:20px;font-weight:normal;padding-left:5px;padding-top:10px;}
+.ysgx{clear:both;}
+.ysgx p{width:330px;height:300px;border:1px solid #EEE;padding:15px 0px 0 14px;}
+.ysgx p a{display:inline-block;line-height:30px;background:#39ad5a;width:56px;height:30px;margin:10px 5px 0 0;text-align:center;overflow:hidden;color:#fff;}
+.ysgx p a.a1{background:#C4E6CD;color:#269C48;}
+.ysgx p a:hover{background:#C4E6CD;color:#39ad5a;}
+.ysgx p a.a1:hover{background:#39ad5a;color:#fff;}
