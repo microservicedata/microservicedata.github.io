@@ -75612,6 +75612,206 @@ public class RedisConfig {
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
+<b> <a> Project: </a> </b> <a> light_reading</a><br />
+<b> <a> File: </a> </b>  <a> MybatisConfig.java</a><br />
+<b> <a> Category: </a> </b>  <a>  DIFile &rarr; Config File</a>
+</div><hr />
+<div class="layui-collapse" >
+<div class="layui-colla-item" >
+<h2 class="layui-colla-title">File Content</h2>
+<div class="layui-colla-content ">
+<b> <a> File Location: </a> </b>reading-cloud-homepage\src\main\java\cn\zealon\readingcloud\homepage\common\config\MybatisConfig.java</a>
+<br />
+<pre class="layui-code" lay-skin="notepad" lay-height="300px">
+package cn.zealon.readingcloud.homepage.common.config;
+
+import com.github.pagehelper.PageHelper;
+import org.apache.ibatis.plugin.Interceptor;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.SqlSessionTemplate;
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.core.io.support.ResourcePatternResolver;
+import javax.sql.DataSource;
+import java.util.Properties;
+
+/**
+ * MyBatis配置
+ * @author: zealon
+ * @since: 2020/4/2
+ */
+@Configuration
+@MapperScan(basePackages = "cn.zealon.readingcloud.homepage.dao",
+        sqlSessionTemplateRef="bookCenterSqlSessionTemplate")
+public class MybatisConfig {
+
+    private final static String MAPPER_LOCATIONS = "classpath*:mappers/*.xml";
+
+    /** 工厂配置 */
+    @Bean
+    public SqlSessionFactory sqlSessionFactoryBean(@Qualifier("bookCenterDataSource") DataSource dataSource) throws Exception {
+        // 设置数据源
+        SqlSessionFactoryBean factory = new SqlSessionFactoryBean();
+        factory.setDataSource(dataSource);
+
+        // 添加XML映射
+        ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+        factory.setMapperLocations(resolver.getResources(MAPPER_LOCATIONS));
+
+        //添加插件
+        factory.setPlugins(new Interceptor[]{ this.getPageHelper() });
+        return factory.getObject();
+    }
+
+    /** 会话模板 */
+    @Bean(name = "bookCenterSqlSessionTemplate")
+    public SqlSessionTemplate setSqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
+        return new SqlSessionTemplate(sqlSessionFactory);
+    }
+
+    /** 分页插件 */
+    private PageHelper getPageHelper(){
+        //配置分页插件，详情请查阅官方文档
+        PageHelper pageHelper = new PageHelper();
+        Properties properties = new Properties();
+        //分页尺寸为0时查询所有纪录不再执行分页
+        properties.setProperty("pageSizeZero", "true");
+        //页码&lt;=0 查询第一页，页码&gt;=总页数查询最后一页
+        properties.setProperty("reasonable", "false");
+        //支持通过 Mapper 接口参数来传递分页参数
+        properties.setProperty("supportMethodsArguments", "true");
+        properties.setProperty("params", "count=countSql");
+        //切换数据源，自动解析不同数据库的分页
+        properties.setProperty("autoRuntimeDialect", "true");
+        pageHelper.setProperties(properties);
+        return pageHelper;
+    }
+}
+</pre>
+<br />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="layui-card" id="345" style="display:block">
+<div class="layui-card-header ">
+<h3><b><a> No.345</a></b></h3>
+</div>
+<div class="layui-card-body">
+<div class="layui-word-aux">
+<b> <a> Project: </a> </b> <a> light_reading</a><br />
+<b> <a> File: </a> </b>  <a> RedisConfig.java</a><br />
+<b> <a> Category: </a> </b>  <a>  DIFile &rarr; Config File</a>
+</div><hr />
+<div class="layui-collapse" >
+<div class="layui-colla-item" >
+<h2 class="layui-colla-title">File Content</h2>
+<div class="layui-colla-content ">
+<b> <a> File Location: </a> </b>reading-cloud-homepage\src\main\java\cn\zealon\readingcloud\homepage\common\config\RedisConfig.java</a>
+<br />
+<pre class="layui-code" lay-skin="notepad" lay-height="300px">
+package cn.zealon.readingcloud.homepage.common.config;
+
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.interceptor.KeyGenerator;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.cache.RedisCacheConfiguration;
+import org.springframework.data.redis.cache.RedisCacheManager;
+import org.springframework.data.redis.cache.RedisCacheWriter;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.*;
+
+import java.lang.reflect.Method;
+import java.time.Duration;
+
+/**
+ * 基础redis配置
+ * @author: zealon
+ * @since: 2020/4/2
+ */
+@EnableCaching
+@Configuration
+public class RedisConfig {
+
+    @Bean
+    public RedisTemplate redisTemplate(RedisConnectionFactory redisConnectionFactory) {
+        RedisTemplate&lt;String, Object&gt; redis = new RedisTemplate&lt;&gt;();
+        redis.setConnectionFactory(redisConnectionFactory);
+        this.setSerializer(redis);
+        return redis;
+    }
+
+    /** 配置Key的生成方式 */
+    @Bean
+    public KeyGenerator keyGenerator() {
+        return new KeyGenerator() {
+            @Override
+            public Object generate(Object o, Method method, Object... objects) {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append(o.getClass().getName()).append(method.getName());
+                for (Object object : objects) {
+                    stringBuilder.append(object.toString());
+                }
+                return stringBuilder.toString();
+            }
+        };
+    }
+
+    /** 缓存管理器 */
+    @Bean
+    public CacheManager cacheManager(RedisConnectionFactory redisConnectionFactory) {
+        //初始化一个RedisCacheWriter
+        RedisCacheWriter redisCacheWriter = RedisCacheWriter.nonLockingRedisCacheWriter(redisConnectionFactory);
+        //设置CacheManager的值序列化方式为json序列化
+        RedisSerializer&lt;Object&gt; jsonSerializer = new GenericJackson2JsonRedisSerializer();
+        RedisSerializationContext.SerializationPair&lt;Object&gt; pair = RedisSerializationContext.SerializationPair.fromSerializer(jsonSerializer);
+        RedisCacheConfiguration defaultCacheConfig = RedisCacheConfiguration.defaultCacheConfig().serializeValuesWith(pair);
+        //设置默认超过期时间是30秒
+        defaultCacheConfig = defaultCacheConfig.entryTtl(Duration.ofSeconds(300));
+        //初始化RedisCacheManager
+        return new RedisCacheManager(redisCacheWriter, defaultCacheConfig);
+    }
+
+    /** 设置RedisTemplate的序列化方式 */
+    public void setSerializer(RedisTemplate redisTemplate) {
+        StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
+        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
+        ObjectMapper om = new ObjectMapper();
+        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+        jackson2JsonRedisSerializer.setObjectMapper(om);
+        //设置键（key）的序列化方式
+        redisTemplate.setKeySerializer(stringRedisSerializer);
+        //设置值（value）的序列化方式
+        redisTemplate.setHashKeySerializer(stringRedisSerializer);
+        redisTemplate.setHashValueSerializer(jackson2JsonRedisSerializer);
+        redisTemplate.afterPropertiesSet();
+    }
+}
+</pre>
+<br />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="layui-card" id="346" style="display:block">
+<div class="layui-card-header ">
+<h3><b><a> No.346</a></b></h3>
+</div>
+<div class="layui-card-body">
+<div class="layui-word-aux">
 <b> <a> Project: </a> </b> <a> matecloud</a><br />
 <b> <a> File: </a> </b>  <a> ExecutorBlockStrategyEnum.java</a><br />
 <b> <a> Category: </a> </b>  <a>  DIFile &rarr; Utility File</a>
@@ -75665,9 +75865,9 @@ public enum ExecutorBlockStrategyEnum {
 </div>
 </div>
 </div>
-<div class="layui-card" id="345" style="display:block">
+<div class="layui-card" id="347" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.345</a></b></h3>
+<h3><b><a> No.347</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -75818,9 +76018,9 @@ public class ExecutorRegistryThread {
 </div>
 </div>
 </div>
-<div class="layui-card" id="346" style="display:block">
+<div class="layui-card" id="348" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.346</a></b></h3>
+<h3><b><a> No.348</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -75966,9 +76166,9 @@ public class JobLogFileCleanThread {
 </div>
 </div>
 </div>
-<div class="layui-card" id="347" style="display:block">
+<div class="layui-card" id="349" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.347</a></b></h3>
+<h3><b><a> No.349</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -76058,9 +76258,9 @@ public class MateResourceServerConfig extends ResourceServerConfigurerAdapter {
 </div>
 </div>
 </div>
-<div class="layui-card" id="348" style="display:block">
+<div class="layui-card" id="350" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.348</a></b></h3>
+<h3><b><a> No.350</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -76130,9 +76330,9 @@ public enum ExecutorRouteStrategyEnum {
 </div>
 </div>
 </div>
-<div class="layui-card" id="349" style="display:block">
+<div class="layui-card" id="351" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.349</a></b></h3>
+<h3><b><a> No.351</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -76338,9 +76538,9 @@ public class JobCompleteHelper {
 </div>
 </div>
 </div>
-<div class="layui-card" id="350" style="display:block">
+<div class="layui-card" id="352" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.350</a></b></h3>
+<h3><b><a> No.352</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -76566,9 +76766,9 @@ public class JobRegistryHelper {
 </div>
 </div>
 </div>
-<div class="layui-card" id="351" style="display:block">
+<div class="layui-card" id="353" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.351</a></b></h3>
+<h3><b><a> No.353</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -76719,9 +76919,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 </div>
 </div>
 </div>
-<div class="layui-card" id="352" style="display:block">
+<div class="layui-card" id="354" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.352</a></b></h3>
+<h3><b><a> No.354</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -76778,9 +76978,9 @@ public abstract class BaseComponent {
 </div>
 </div>
 </div>
-<div class="layui-card" id="353" style="display:block">
+<div class="layui-card" id="355" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.353</a></b></h3>
+<h3><b><a> No.355</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -76874,9 +77074,9 @@ public class TokenAspect {
 </div>
 </div>
 </div>
-<div class="layui-card" id="354" style="display:block">
+<div class="layui-card" id="356" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.354</a></b></h3>
+<h3><b><a> No.356</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -76930,9 +77130,9 @@ public abstract class BaseComponent {
 </div>
 </div>
 </div>
-<div class="layui-card" id="355" style="display:block">
+<div class="layui-card" id="357" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.355</a></b></h3>
+<h3><b><a> No.357</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -77025,9 +77225,9 @@ public class TokenAspect {
 </div>
 </div>
 </div>
-<div class="layui-card" id="356" style="display:block">
+<div class="layui-card" id="358" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.356</a></b></h3>
+<h3><b><a> No.358</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -77081,9 +77281,9 @@ public abstract class BaseComponent {
 </div>
 </div>
 </div>
-<div class="layui-card" id="357" style="display:block">
+<div class="layui-card" id="359" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.357</a></b></h3>
+<h3><b><a> No.359</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -77174,9 +77374,9 @@ public class TokenAspect {
 </div>
 </div>
 </div>
-<div class="layui-card" id="358" style="display:block">
+<div class="layui-card" id="360" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.358</a></b></h3>
+<h3><b><a> No.360</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -77298,9 +77498,9 @@ public class Util {
 </div>
 </div>
 </div>
-<div class="layui-card" id="359" style="display:block">
+<div class="layui-card" id="361" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.359</a></b></h3>
+<h3><b><a> No.361</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -77403,9 +77603,9 @@ public class PicturePieline implements Pipeline {
 </div>
 </div>
 </div>
-<div class="layui-card" id="360" style="display:block">
+<div class="layui-card" id="362" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.360</a></b></h3>
+<h3><b><a> No.362</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -77654,9 +77854,9 @@ public class PictureProcesser implements PageProcessor {
 </div>
 </div>
 </div>
-<div class="layui-card" id="361" style="display:block">
+<div class="layui-card" id="363" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.361</a></b></h3>
+<h3><b><a> No.363</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -77765,9 +77965,9 @@ public class PicturePieline implements Pipeline {
 </div>
 </div>
 </div>
-<div class="layui-card" id="362" style="display:block">
+<div class="layui-card" id="364" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.362</a></b></h3>
+<h3><b><a> No.364</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -78010,9 +78210,9 @@ public class PictureProcesser implements PageProcessor {
 </div>
 </div>
 </div>
-<div class="layui-card" id="363" style="display:block">
+<div class="layui-card" id="365" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.363</a></b></h3>
+<h3><b><a> No.365</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -78205,9 +78405,9 @@ public class IdWorker {
 </div>
 </div>
 </div>
-<div class="layui-card" id="364" style="display:block">
+<div class="layui-card" id="366" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.364</a></b></h3>
+<h3><b><a> No.366</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -78391,9 +78591,9 @@ public class IdWorkerUtils {
 </div>
 </div>
 </div>
-<div class="layui-card" id="365" style="display:block">
+<div class="layui-card" id="367" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.365</a></b></h3>
+<h3><b><a> No.367</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -78606,9 +78806,9 @@ public class SnowflakeIdWorker {
 </div>
 </div>
 </div>
-<div class="layui-card" id="366" style="display:block">
+<div class="layui-card" id="368" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.366</a></b></h3>
+<h3><b><a> No.368</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -78706,9 +78906,9 @@ public class SysLoggerAspect {
 </div>
 </div>
 </div>
-<div class="layui-card" id="367" style="display:block">
+<div class="layui-card" id="369" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.367</a></b></h3>
+<h3><b><a> No.369</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -78779,9 +78979,9 @@ public class JwtConfiguration {
 </div>
 </div>
 </div>
-<div class="layui-card" id="368" style="display:block">
+<div class="layui-card" id="370" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.368</a></b></h3>
+<h3><b><a> No.370</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -78904,9 +79104,9 @@ public class HttpUtils {
 </div>
 </div>
 </div>
-<div class="layui-card" id="369" style="display:block">
+<div class="layui-card" id="371" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.369</a></b></h3>
+<h3><b><a> No.371</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -79014,9 +79214,9 @@ public class UserUtils {
 </div>
 </div>
 </div>
-<div class="layui-card" id="370" style="display:block">
+<div class="layui-card" id="372" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.370</a></b></h3>
+<h3><b><a> No.372</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -79113,9 +79313,9 @@ public class SysLoggerAspect {
 </div>
 </div>
 </div>
-<div class="layui-card" id="371" style="display:block">
+<div class="layui-card" id="373" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.371</a></b></h3>
+<h3><b><a> No.373</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -79186,9 +79386,9 @@ public class JwtConfiguration {
 </div>
 </div>
 </div>
-<div class="layui-card" id="372" style="display:block">
+<div class="layui-card" id="374" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.372</a></b></h3>
+<h3><b><a> No.374</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -79311,9 +79511,9 @@ public class HttpUtils {
 </div>
 </div>
 </div>
-<div class="layui-card" id="373" style="display:block">
+<div class="layui-card" id="375" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.373</a></b></h3>
+<h3><b><a> No.375</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -79421,9 +79621,9 @@ public class UserUtils {
 </div>
 </div>
 </div>
-<div class="layui-card" id="374" style="display:block">
+<div class="layui-card" id="376" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.374</a></b></h3>
+<h3><b><a> No.376</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -79524,9 +79724,9 @@ public class SysLoggerAspect {
 </div>
 </div>
 </div>
-<div class="layui-card" id="375" style="display:block">
+<div class="layui-card" id="377" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.375</a></b></h3>
+<h3><b><a> No.377</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -79597,9 +79797,9 @@ public class JwtConfiguration {
 </div>
 </div>
 </div>
-<div class="layui-card" id="376" style="display:block">
+<div class="layui-card" id="378" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.376</a></b></h3>
+<h3><b><a> No.378</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -79720,9 +79920,9 @@ public class HttpUtils {
 </div>
 </div>
 </div>
-<div class="layui-card" id="377" style="display:block">
+<div class="layui-card" id="379" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.377</a></b></h3>
+<h3><b><a> No.379</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -79826,9 +80026,9 @@ public class UserUtils {
 </div>
 </div>
 </div>
-<div class="layui-card" id="378" style="display:block">
+<div class="layui-card" id="380" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.378</a></b></h3>
+<h3><b><a> No.380</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -79892,9 +80092,9 @@ public class AppConfig {
 </div>
 </div>
 </div>
-<div class="layui-card" id="379" style="display:block">
+<div class="layui-card" id="381" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.379</a></b></h3>
+<h3><b><a> No.381</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -79948,9 +80148,9 @@ public class TestConfig {
 </div>
 </div>
 </div>
-<div class="layui-card" id="380" style="display:block">
+<div class="layui-card" id="382" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.380</a></b></h3>
+<h3><b><a> No.382</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -80005,9 +80205,9 @@ public class AppConfig {
 </div>
 </div>
 </div>
-<div class="layui-card" id="381" style="display:block">
+<div class="layui-card" id="383" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.381</a></b></h3>
+<h3><b><a> No.383</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -80064,9 +80264,9 @@ public class AppConfig {
 </div>
 </div>
 </div>
-<div class="layui-card" id="382" style="display:block">
+<div class="layui-card" id="384" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.382</a></b></h3>
+<h3><b><a> No.384</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -80120,9 +80320,9 @@ public class TestConfig {
 </div>
 </div>
 </div>
-<div class="layui-card" id="383" style="display:block">
+<div class="layui-card" id="385" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.383</a></b></h3>
+<h3><b><a> No.385</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -80193,9 +80393,9 @@ public class AppConfig {
 </div>
 </div>
 </div>
-<div class="layui-card" id="384" style="display:block">
+<div class="layui-card" id="386" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.384</a></b></h3>
+<h3><b><a> No.386</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -80247,6 +80447,7 @@ public class TestConfig {
 </div>
 </div>
 </div>
+
 
 
 

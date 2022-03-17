@@ -4662,7 +4662,207 @@ public class RedisConfig {
 </div>
 <div class="layui-card" id="51" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.347</a></b></h3>
+<h3><b><a> No.344</a></b></h3>
+</div>
+<div class="layui-card-body">
+<div class="layui-word-aux">
+<b> <a> Project: </a> </b> <a> light_reading</a><br />
+<b> <a> File: </a> </b>  <a> MybatisConfig.java</a><br />
+<b> <a> Category: </a> </b>  <a>  DIFile &rarr; Config File</a>
+</div><hr />
+<div class="layui-collapse" >
+<div class="layui-colla-item" >
+<h2 class="layui-colla-title">File Content</h2>
+<div class="layui-colla-content ">
+<b> <a> File Location: </a> </b>reading-cloud-homepage\src\main\java\cn\zealon\readingcloud\homepage\common\config\MybatisConfig.java</a>
+<br />
+<pre class="layui-code" lay-skin="notepad" lay-height="300px">
+package cn.zealon.readingcloud.homepage.common.config;
+
+import com.github.pagehelper.PageHelper;
+import org.apache.ibatis.plugin.Interceptor;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.SqlSessionTemplate;
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.core.io.support.ResourcePatternResolver;
+import javax.sql.DataSource;
+import java.util.Properties;
+
+/**
+ * MyBatis配置
+ * @author: zealon
+ * @since: 2020/4/2
+ */
+@Configuration
+@MapperScan(basePackages = "cn.zealon.readingcloud.homepage.dao",
+        sqlSessionTemplateRef="bookCenterSqlSessionTemplate")
+public class MybatisConfig {
+
+    private final static String MAPPER_LOCATIONS = "classpath*:mappers/*.xml";
+
+    /** 工厂配置 */
+    @Bean
+    public SqlSessionFactory sqlSessionFactoryBean(@Qualifier("bookCenterDataSource") DataSource dataSource) throws Exception {
+        // 设置数据源
+        SqlSessionFactoryBean factory = new SqlSessionFactoryBean();
+        factory.setDataSource(dataSource);
+
+        // 添加XML映射
+        ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+        factory.setMapperLocations(resolver.getResources(MAPPER_LOCATIONS));
+
+        //添加插件
+        factory.setPlugins(new Interceptor[]{ this.getPageHelper() });
+        return factory.getObject();
+    }
+
+    /** 会话模板 */
+    @Bean(name = "bookCenterSqlSessionTemplate")
+    public SqlSessionTemplate setSqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
+        return new SqlSessionTemplate(sqlSessionFactory);
+    }
+
+    /** 分页插件 */
+    private PageHelper getPageHelper(){
+        //配置分页插件，详情请查阅官方文档
+        PageHelper pageHelper = new PageHelper();
+        Properties properties = new Properties();
+        //分页尺寸为0时查询所有纪录不再执行分页
+        properties.setProperty("pageSizeZero", "true");
+        //页码&lt;=0 查询第一页，页码&gt;=总页数查询最后一页
+        properties.setProperty("reasonable", "false");
+        //支持通过 Mapper 接口参数来传递分页参数
+        properties.setProperty("supportMethodsArguments", "true");
+        properties.setProperty("params", "count=countSql");
+        //切换数据源，自动解析不同数据库的分页
+        properties.setProperty("autoRuntimeDialect", "true");
+        pageHelper.setProperties(properties);
+        return pageHelper;
+    }
+}
+</pre>
+<br />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="layui-card" id="52" style="display:block">
+<div class="layui-card-header ">
+<h3><b><a> No.345</a></b></h3>
+</div>
+<div class="layui-card-body">
+<div class="layui-word-aux">
+<b> <a> Project: </a> </b> <a> light_reading</a><br />
+<b> <a> File: </a> </b>  <a> RedisConfig.java</a><br />
+<b> <a> Category: </a> </b>  <a>  DIFile &rarr; Config File</a>
+</div><hr />
+<div class="layui-collapse" >
+<div class="layui-colla-item" >
+<h2 class="layui-colla-title">File Content</h2>
+<div class="layui-colla-content ">
+<b> <a> File Location: </a> </b>reading-cloud-homepage\src\main\java\cn\zealon\readingcloud\homepage\common\config\RedisConfig.java</a>
+<br />
+<pre class="layui-code" lay-skin="notepad" lay-height="300px">
+package cn.zealon.readingcloud.homepage.common.config;
+
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.interceptor.KeyGenerator;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.cache.RedisCacheConfiguration;
+import org.springframework.data.redis.cache.RedisCacheManager;
+import org.springframework.data.redis.cache.RedisCacheWriter;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.*;
+
+import java.lang.reflect.Method;
+import java.time.Duration;
+
+/**
+ * 基础redis配置
+ * @author: zealon
+ * @since: 2020/4/2
+ */
+@EnableCaching
+@Configuration
+public class RedisConfig {
+
+    @Bean
+    public RedisTemplate redisTemplate(RedisConnectionFactory redisConnectionFactory) {
+        RedisTemplate&lt;String, Object&gt; redis = new RedisTemplate&lt;&gt;();
+        redis.setConnectionFactory(redisConnectionFactory);
+        this.setSerializer(redis);
+        return redis;
+    }
+
+    /** 配置Key的生成方式 */
+    @Bean
+    public KeyGenerator keyGenerator() {
+        return new KeyGenerator() {
+            @Override
+            public Object generate(Object o, Method method, Object... objects) {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append(o.getClass().getName()).append(method.getName());
+                for (Object object : objects) {
+                    stringBuilder.append(object.toString());
+                }
+                return stringBuilder.toString();
+            }
+        };
+    }
+
+    /** 缓存管理器 */
+    @Bean
+    public CacheManager cacheManager(RedisConnectionFactory redisConnectionFactory) {
+        //初始化一个RedisCacheWriter
+        RedisCacheWriter redisCacheWriter = RedisCacheWriter.nonLockingRedisCacheWriter(redisConnectionFactory);
+        //设置CacheManager的值序列化方式为json序列化
+        RedisSerializer&lt;Object&gt; jsonSerializer = new GenericJackson2JsonRedisSerializer();
+        RedisSerializationContext.SerializationPair&lt;Object&gt; pair = RedisSerializationContext.SerializationPair.fromSerializer(jsonSerializer);
+        RedisCacheConfiguration defaultCacheConfig = RedisCacheConfiguration.defaultCacheConfig().serializeValuesWith(pair);
+        //设置默认超过期时间是30秒
+        defaultCacheConfig = defaultCacheConfig.entryTtl(Duration.ofSeconds(300));
+        //初始化RedisCacheManager
+        return new RedisCacheManager(redisCacheWriter, defaultCacheConfig);
+    }
+
+    /** 设置RedisTemplate的序列化方式 */
+    public void setSerializer(RedisTemplate redisTemplate) {
+        StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
+        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
+        ObjectMapper om = new ObjectMapper();
+        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+        jackson2JsonRedisSerializer.setObjectMapper(om);
+        //设置键（key）的序列化方式
+        redisTemplate.setKeySerializer(stringRedisSerializer);
+        //设置值（value）的序列化方式
+        redisTemplate.setHashKeySerializer(stringRedisSerializer);
+        redisTemplate.setHashValueSerializer(jackson2JsonRedisSerializer);
+        redisTemplate.afterPropertiesSet();
+    }
+}
+</pre>
+<br />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="layui-card" id="53" style="display:block">
+<div class="layui-card-header ">
+<h3><b><a> No.349</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -4752,9 +4952,9 @@ public class MateResourceServerConfig extends ResourceServerConfigurerAdapter {
 </div>
 </div>
 </div>
-<div class="layui-card" id="52" style="display:block">
+<div class="layui-card" id="54" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.351</a></b></h3>
+<h3><b><a> No.353</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -4905,9 +5105,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 </div>
 </div>
 </div>
-<div class="layui-card" id="53" style="display:block">
+<div class="layui-card" id="55" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.367</a></b></h3>
+<h3><b><a> No.369</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -4978,9 +5178,9 @@ public class JwtConfiguration {
 </div>
 </div>
 </div>
-<div class="layui-card" id="54" style="display:block">
+<div class="layui-card" id="56" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.371</a></b></h3>
+<h3><b><a> No.373</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -5051,9 +5251,9 @@ public class JwtConfiguration {
 </div>
 </div>
 </div>
-<div class="layui-card" id="55" style="display:block">
+<div class="layui-card" id="57" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.375</a></b></h3>
+<h3><b><a> No.377</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -5124,9 +5324,9 @@ public class JwtConfiguration {
 </div>
 </div>
 </div>
-<div class="layui-card" id="56" style="display:block">
+<div class="layui-card" id="58" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.378</a></b></h3>
+<h3><b><a> No.380</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -5190,9 +5390,9 @@ public class AppConfig {
 </div>
 </div>
 </div>
-<div class="layui-card" id="57" style="display:block">
+<div class="layui-card" id="59" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.379</a></b></h3>
+<h3><b><a> No.381</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -5246,9 +5446,9 @@ public class TestConfig {
 </div>
 </div>
 </div>
-<div class="layui-card" id="58" style="display:block">
+<div class="layui-card" id="60" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.380</a></b></h3>
+<h3><b><a> No.382</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -5303,9 +5503,9 @@ public class AppConfig {
 </div>
 </div>
 </div>
-<div class="layui-card" id="59" style="display:block">
+<div class="layui-card" id="61" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.381</a></b></h3>
+<h3><b><a> No.383</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -5362,9 +5562,9 @@ public class AppConfig {
 </div>
 </div>
 </div>
-<div class="layui-card" id="60" style="display:block">
+<div class="layui-card" id="62" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.382</a></b></h3>
+<h3><b><a> No.384</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -5418,9 +5618,9 @@ public class TestConfig {
 </div>
 </div>
 </div>
-<div class="layui-card" id="61" style="display:block">
+<div class="layui-card" id="63" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.383</a></b></h3>
+<h3><b><a> No.385</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -5491,9 +5691,9 @@ public class AppConfig {
 </div>
 </div>
 </div>
-<div class="layui-card" id="62" style="display:block">
+<div class="layui-card" id="64" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.384</a></b></h3>
+<h3><b><a> No.386</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -5547,14 +5747,13 @@ public class TestConfig {
 </div>
 
 
-
                         <div>
                             <div id="divpager-1"></div>
                         </div>
 
                     </div>
                     <div class="layui-tab-item">
-<div class="layui-card" id="63" style="display:block">
+<div class="layui-card" id="65" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.256</a></b></h3>
 </div>
@@ -5612,7 +5811,7 @@ public class ExceptionHandle {
 </div>
 </div>
 </div>
-<div class="layui-card" id="64" style="display:block">
+<div class="layui-card" id="66" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.259</a></b></h3>
 </div>
@@ -5670,7 +5869,7 @@ public class ExceptionHandle {
 </div>
 </div>
 </div>
-<div class="layui-card" id="65" style="display:block">
+<div class="layui-card" id="67" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.264</a></b></h3>
 </div>
@@ -5728,7 +5927,7 @@ public class ExceptionHandle {
 </div>
 </div>
 </div>
-<div class="layui-card" id="66" style="display:block">
+<div class="layui-card" id="68" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.267</a></b></h3>
 </div>
@@ -5786,7 +5985,7 @@ public class ExceptionHandle {
 </div>
 </div>
 </div>
-<div class="layui-card" id="67" style="display:block">
+<div class="layui-card" id="69" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.270</a></b></h3>
 </div>
@@ -5844,7 +6043,7 @@ public class ExceptionHandle {
 </div>
 </div>
 </div>
-<div class="layui-card" id="68" style="display:block">
+<div class="layui-card" id="70" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.301</a></b></h3>
 </div>
@@ -5915,7 +6114,7 @@ public class GlobalExceptionHandler {
 </div>
 </div>
 </div>
-<div class="layui-card" id="69" style="display:block">
+<div class="layui-card" id="71" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.305</a></b></h3>
 </div>
@@ -5988,7 +6187,7 @@ public class GlobalExceptionHandler {
 </div>
 </div>
 </div>
-<div class="layui-card" id="70" style="display:block">
+<div class="layui-card" id="72" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.311</a></b></h3>
 </div>
@@ -6064,7 +6263,7 @@ public class GlobalExceptionHandler {
 </div>
 </div>
 </div>
-<div class="layui-card" id="71" style="display:block">
+<div class="layui-card" id="73" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.312</a></b></h3>
 </div>
@@ -6133,7 +6332,7 @@ public class GlobalExceptionHandler {
 </div>
 </div>
 </div>
-<div class="layui-card" id="72" style="display:block">
+<div class="layui-card" id="74" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.315</a></b></h3>
 </div>
@@ -6204,7 +6403,7 @@ public class GlobalExceptionHandler {
 </div>
 </div>
 </div>
-<div class="layui-card" id="73" style="display:block">
+<div class="layui-card" id="75" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.319</a></b></h3>
 </div>
@@ -6283,14 +6482,12 @@ public class GlobalExceptionHandler {
 </div>
 
 
-
                         <div>
                             <div id="divpager-2"></div>
                         </div>
                     </div>
                     <div class="layui-tab-item">
-
-<div class="layui-card" id="74" style="display:block">
+<div class="layui-card" id="76" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.299</a></b></h3>
 </div>
@@ -6362,7 +6559,7 @@ public class CookieUtil {
 </div>
 </div>
 </div>
-<div class="layui-card" id="75" style="display:block">
+<div class="layui-card" id="77" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.300</a></b></h3>
 </div>
@@ -6430,7 +6627,7 @@ public class CookieUtil {
 </div>
 </div>
 </div>
-<div class="layui-card" id="76" style="display:block">
+<div class="layui-card" id="78" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.303</a></b></h3>
 </div>
@@ -6521,7 +6718,7 @@ public class Base64Util {
 </div>
 </div>
 </div>
-<div class="layui-card" id="77" style="display:block">
+<div class="layui-card" id="79" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.304</a></b></h3>
 </div>
@@ -6664,7 +6861,7 @@ public class HttpUtil {
 </div>
 </div>
 </div>
-<div class="layui-card" id="78" style="display:block">
+<div class="layui-card" id="80" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.306</a></b></h3>
 </div>
@@ -6729,7 +6926,7 @@ public class SecurityUtil {
 </div>
 </div>
 </div>
-<div class="layui-card" id="79" style="display:block">
+<div class="layui-card" id="81" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.309</a></b></h3>
 </div>
@@ -6821,7 +7018,7 @@ public class Base64Util {
 </div>
 </div>
 </div>
-<div class="layui-card" id="80" style="display:block">
+<div class="layui-card" id="82" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.310</a></b></h3>
 </div>
@@ -6916,7 +7113,7 @@ public class HttpUtil {
 </div>
 </div>
 </div>
-<div class="layui-card" id="81" style="display:block">
+<div class="layui-card" id="83" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.313</a></b></h3>
 </div>
@@ -7118,7 +7315,7 @@ public class ClientDefaultAccessTokenConverter implements AccessTokenConverter {
 </div>
 </div>
 </div>
-<div class="layui-card" id="82" style="display:block">
+<div class="layui-card" id="84" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.316</a></b></h3>
 </div>
@@ -7183,7 +7380,7 @@ public class SecurityUtil {
 </div>
 </div>
 </div>
-<div class="layui-card" id="83" style="display:block">
+<div class="layui-card" id="85" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.333</a></b></h3>
 </div>
@@ -7263,7 +7460,7 @@ public abstract class AddressUtil {
 </div>
 </div>
 </div>
-<div class="layui-card" id="84" style="display:block">
+<div class="layui-card" id="86" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.336</a></b></h3>
 </div>
@@ -7343,7 +7540,7 @@ public abstract class AddressUtil {
 </div>
 </div>
 </div>
-<div class="layui-card" id="85" style="display:block">
+<div class="layui-card" id="87" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.337</a></b></h3>
 </div>
@@ -7470,7 +7667,7 @@ public class GlobalIdGeneratorUtil {
 </div>
 </div>
 </div>
-<div class="layui-card" id="86" style="display:block">
+<div class="layui-card" id="88" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.338</a></b></h3>
 </div>
@@ -7598,7 +7795,7 @@ public class GlobalIdGeneratorUtil {
 </div>
 </div>
 </div>
-<div class="layui-card" id="87" style="display:block">
+<div class="layui-card" id="89" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.339</a></b></h3>
 </div>
@@ -7725,9 +7922,9 @@ public class GlobalIdGeneratorUtil {
 </div>
 </div>
 </div>
-<div class="layui-card" id="88" style="display:block">
+<div class="layui-card" id="90" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.344</a></b></h3>
+<h3><b><a> No.346</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -7784,9 +7981,9 @@ public enum ExecutorBlockStrategyEnum {
 </div>
 </div>
 </div>
-<div class="layui-card" id="89" style="display:block">
+<div class="layui-card" id="91" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.345</a></b></h3>
+<h3><b><a> No.347</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -7937,9 +8134,9 @@ public class ExecutorRegistryThread {
 </div>
 </div>
 </div>
-<div class="layui-card" id="90" style="display:block">
+<div class="layui-card" id="92" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.346</a></b></h3>
+<h3><b><a> No.348</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -8085,9 +8282,9 @@ public class JobLogFileCleanThread {
 </div>
 </div>
 </div>
-<div class="layui-card" id="91" style="display:block">
+<div class="layui-card" id="93" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.348</a></b></h3>
+<h3><b><a> No.350</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -8157,9 +8354,9 @@ public enum ExecutorRouteStrategyEnum {
 </div>
 </div>
 </div>
-<div class="layui-card" id="92" style="display:block">
+<div class="layui-card" id="94" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.349</a></b></h3>
+<h3><b><a> No.351</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -8365,9 +8562,9 @@ public class JobCompleteHelper {
 </div>
 </div>
 </div>
-<div class="layui-card" id="93" style="display:block">
+<div class="layui-card" id="95" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.350</a></b></h3>
+<h3><b><a> No.352</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -8593,9 +8790,9 @@ public class JobRegistryHelper {
 </div>
 </div>
 </div>
-<div class="layui-card" id="94" style="display:block">
+<div class="layui-card" id="96" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.358</a></b></h3>
+<h3><b><a> No.360</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -8717,9 +8914,9 @@ public class Util {
 </div>
 </div>
 </div>
-<div class="layui-card" id="95" style="display:block">
+<div class="layui-card" id="97" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.359</a></b></h3>
+<h3><b><a> No.361</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -8822,9 +9019,9 @@ public class PicturePieline implements Pipeline {
 </div>
 </div>
 </div>
-<div class="layui-card" id="96" style="display:block">
+<div class="layui-card" id="98" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.360</a></b></h3>
+<h3><b><a> No.362</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -9073,9 +9270,9 @@ public class PictureProcesser implements PageProcessor {
 </div>
 </div>
 </div>
-<div class="layui-card" id="97" style="display:block">
+<div class="layui-card" id="99" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.361</a></b></h3>
+<h3><b><a> No.363</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -9184,9 +9381,9 @@ public class PicturePieline implements Pipeline {
 </div>
 </div>
 </div>
-<div class="layui-card" id="98" style="display:block">
+<div class="layui-card" id="100" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.362</a></b></h3>
+<h3><b><a> No.364</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -9429,9 +9626,9 @@ public class PictureProcesser implements PageProcessor {
 </div>
 </div>
 </div>
-<div class="layui-card" id="99" style="display:block">
+<div class="layui-card" id="101" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.363</a></b></h3>
+<h3><b><a> No.365</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -9624,9 +9821,9 @@ public class IdWorker {
 </div>
 </div>
 </div>
-<div class="layui-card" id="100" style="display:block">
+<div class="layui-card" id="102" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.364</a></b></h3>
+<h3><b><a> No.366</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -9810,9 +10007,9 @@ public class IdWorkerUtils {
 </div>
 </div>
 </div>
-<div class="layui-card" id="101" style="display:block">
+<div class="layui-card" id="103" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.365</a></b></h3>
+<h3><b><a> No.367</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -10025,9 +10222,9 @@ public class SnowflakeIdWorker {
 </div>
 </div>
 </div>
-<div class="layui-card" id="102" style="display:block">
+<div class="layui-card" id="104" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.368</a></b></h3>
+<h3><b><a> No.370</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -10150,9 +10347,9 @@ public class HttpUtils {
 </div>
 </div>
 </div>
-<div class="layui-card" id="103" style="display:block">
+<div class="layui-card" id="105" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.369</a></b></h3>
+<h3><b><a> No.371</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -10260,9 +10457,9 @@ public class UserUtils {
 </div>
 </div>
 </div>
-<div class="layui-card" id="104" style="display:block">
+<div class="layui-card" id="106" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.372</a></b></h3>
+<h3><b><a> No.374</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -10385,9 +10582,9 @@ public class HttpUtils {
 </div>
 </div>
 </div>
-<div class="layui-card" id="105" style="display:block">
+<div class="layui-card" id="107" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.373</a></b></h3>
+<h3><b><a> No.375</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -10495,9 +10692,9 @@ public class UserUtils {
 </div>
 </div>
 </div>
-<div class="layui-card" id="106" style="display:block">
+<div class="layui-card" id="108" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.376</a></b></h3>
+<h3><b><a> No.378</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -10618,9 +10815,9 @@ public class HttpUtils {
 </div>
 </div>
 </div>
-<div class="layui-card" id="107" style="display:block">
+<div class="layui-card" id="109" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.377</a></b></h3>
+<h3><b><a> No.379</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -10732,8 +10929,7 @@ public class UserUtils {
                         </div>
                     </div>
                     <div class="layui-tab-item">
-
-<div class="layui-card" id="108" style="display:block">
+<div class="layui-card" id="110" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.247</a></b></h3>
 </div>
@@ -10791,7 +10987,7 @@ public class HeaderGenerator {
 </div>
 </div>
 </div>
-<div class="layui-card" id="109" style="display:block">
+<div class="layui-card" id="111" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.249</a></b></h3>
 </div>
@@ -10851,7 +11047,7 @@ public class HeaderGenerator {
 </div>
 </div>
 </div>
-<div class="layui-card" id="110" style="display:block">
+<div class="layui-card" id="112" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.251</a></b></h3>
 </div>
@@ -10911,7 +11107,7 @@ public class HeaderGenerator {
 </div>
 </div>
 </div>
-<div class="layui-card" id="111" style="display:block">
+<div class="layui-card" id="113" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.253</a></b></h3>
 </div>
@@ -10969,7 +11165,7 @@ public class HeaderGenerator {
 </div>
 </div>
 </div>
-<div class="layui-card" id="112" style="display:block">
+<div class="layui-card" id="114" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.254</a></b></h3>
 </div>
@@ -11025,7 +11221,7 @@ public class FlagValidatorClass implements ConstraintValidator&lt;FlagValidator,
 </div>
 </div>
 </div>
-<div class="layui-card" id="113" style="display:block">
+<div class="layui-card" id="115" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.255</a></b></h3>
 </div>
@@ -11076,7 +11272,7 @@ public class FlagValidatorClass implements ConstraintValidator&lt;FlagValidator,
 </div>
 </div>
 </div>
-<div class="layui-card" id="114" style="display:block">
+<div class="layui-card" id="116" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.272</a></b></h3>
 </div>
@@ -11229,7 +11425,7 @@ public class PreFilter extends ZuulFilter {
 </div>
 </div>
 </div>
-<div class="layui-card" id="115" style="display:block">
+<div class="layui-card" id="117" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.274</a></b></h3>
 </div>
@@ -11383,7 +11579,7 @@ public class PreFilter extends ZuulFilter {
 </div>
 </div>
 </div>
-<div class="layui-card" id="116" style="display:block">
+<div class="layui-card" id="118" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.280</a></b></h3>
 </div>
@@ -11456,7 +11652,7 @@ public class JwtInterceptor implements HandlerInterceptor {
 </div>
 </div>
 </div>
-<div class="layui-card" id="117" style="display:block">
+<div class="layui-card" id="119" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.281</a></b></h3>
 </div>
@@ -11525,7 +11721,7 @@ public class JwtInterceptor implements HandlerInterceptor {
 </div>
 </div>
 </div>
-<div class="layui-card" id="118" style="display:block">
+<div class="layui-card" id="120" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.282</a></b></h3>
 </div>
@@ -11594,7 +11790,7 @@ public class JwtInterceptor implements HandlerInterceptor {
 </div>
 </div>
 </div>
-<div class="layui-card" id="119" style="display:block">
+<div class="layui-card" id="121" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.283</a></b></h3>
 </div>
@@ -11663,7 +11859,7 @@ public class JwtInterceptor implements HandlerInterceptor {
 </div>
 </div>
 </div>
-<div class="layui-card" id="120" style="display:block">
+<div class="layui-card" id="122" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.284</a></b></h3>
 </div>
@@ -11732,7 +11928,7 @@ public class JwtInterceptor implements HandlerInterceptor {
 </div>
 </div>
 </div>
-<div class="layui-card" id="121" style="display:block">
+<div class="layui-card" id="123" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.285</a></b></h3>
 </div>
@@ -12286,7 +12482,7 @@ public final class HTMLFilter {
 </div>
 </div>
 </div>
-<div class="layui-card" id="122" style="display:block">
+<div class="layui-card" id="124" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.287</a></b></h3>
 </div>
@@ -12840,7 +13036,7 @@ public final class HTMLFilter {
 </div>
 </div>
 </div>
-<div class="layui-card" id="123" style="display:block">
+<div class="layui-card" id="125" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.292</a></b></h3>
 </div>
@@ -12916,7 +13112,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 </div>
 </div>
 </div>
-<div class="layui-card" id="124" style="display:block">
+<div class="layui-card" id="126" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.295</a></b></h3>
 </div>
@@ -12990,7 +13186,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 </div>
 </div>
 </div>
-<div class="layui-card" id="125" style="display:block">
+<div class="layui-card" id="127" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.308</a></b></h3>
 </div>
@@ -13046,7 +13242,7 @@ public class TokenInterceptor implements HandlerInterceptor {
 </div>
 </div>
 </div>
-<div class="layui-card" id="126" style="display:block">
+<div class="layui-card" id="128" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.314</a></b></h3>
 </div>
@@ -13103,7 +13299,7 @@ public class TokenInterceptor implements HandlerInterceptor {
 </div>
 </div>
 </div>
-<div class="layui-card" id="127" style="display:block">
+<div class="layui-card" id="129" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.318</a></b></h3>
 </div>
@@ -13161,7 +13357,7 @@ public class TokenInterceptor implements HandlerInterceptor {
 </div>
 </div>
 </div>
-<div class="layui-card" id="128" style="display:block">
+<div class="layui-card" id="130" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.320</a></b></h3>
 </div>
@@ -13359,7 +13555,7 @@ public class ClientDefaultAccessTokenConverter implements AccessTokenConverter {
 </div>
 </div>
 </div>
-<div class="layui-card" id="129" style="display:block">
+<div class="layui-card" id="131" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.328</a></b></h3>
 </div>
@@ -13424,7 +13620,7 @@ public class DefaultMessageQueueListener implements MessageListener {
 </div>
 </div>
 </div>
-<div class="layui-card" id="130" style="display:block">
+<div class="layui-card" id="132" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.329</a></b></h3>
 </div>
@@ -13489,7 +13685,7 @@ public class DefaultMessageQueueListener implements MessageListener {
 </div>
 </div>
 </div>
-<div class="layui-card" id="131" style="display:block">
+<div class="layui-card" id="133" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.330</a></b></h3>
 </div>
@@ -13553,7 +13749,7 @@ public class DefaultMessageQueueListener implements MessageListener {
 </div>
 </div>
 </div>
-<div class="layui-card" id="132" style="display:block">
+<div class="layui-card" id="134" style="display:block">
 <div class="layui-card-header ">
 <h3><b><a> No.331</a></b></h3>
 </div>
@@ -13617,9 +13813,9 @@ public class DefaultMessageQueueListener implements MessageListener {
 </div>
 </div>
 </div>
-<div class="layui-card" id="133" style="display:block">
+<div class="layui-card" id="135" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.352</a></b></h3>
+<h3><b><a> No.354</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -13676,9 +13872,9 @@ public abstract class BaseComponent {
 </div>
 </div>
 </div>
-<div class="layui-card" id="134" style="display:block">
+<div class="layui-card" id="136" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.353</a></b></h3>
+<h3><b><a> No.355</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -13772,9 +13968,9 @@ public class TokenAspect {
 </div>
 </div>
 </div>
-<div class="layui-card" id="135" style="display:block">
+<div class="layui-card" id="137" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.354</a></b></h3>
+<h3><b><a> No.356</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -13828,9 +14024,9 @@ public abstract class BaseComponent {
 </div>
 </div>
 </div>
-<div class="layui-card" id="136" style="display:block">
+<div class="layui-card" id="138" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.355</a></b></h3>
+<h3><b><a> No.357</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -13923,9 +14119,9 @@ public class TokenAspect {
 </div>
 </div>
 </div>
-<div class="layui-card" id="137" style="display:block">
+<div class="layui-card" id="139" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.356</a></b></h3>
+<h3><b><a> No.358</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -13979,9 +14175,9 @@ public abstract class BaseComponent {
 </div>
 </div>
 </div>
-<div class="layui-card" id="138" style="display:block">
+<div class="layui-card" id="140" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.357</a></b></h3>
+<h3><b><a> No.359</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -14072,9 +14268,9 @@ public class TokenAspect {
 </div>
 </div>
 </div>
-<div class="layui-card" id="139" style="display:block">
+<div class="layui-card" id="141" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.366</a></b></h3>
+<h3><b><a> No.368</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -14172,9 +14368,9 @@ public class SysLoggerAspect {
 </div>
 </div>
 </div>
-<div class="layui-card" id="140" style="display:block">
+<div class="layui-card" id="142" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.370</a></b></h3>
+<h3><b><a> No.372</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -14271,9 +14467,9 @@ public class SysLoggerAspect {
 </div>
 </div>
 </div>
-<div class="layui-card" id="141" style="display:block">
+<div class="layui-card" id="143" style="display:block">
 <div class="layui-card-header ">
-<h3><b><a> No.374</a></b></h3>
+<h3><b><a> No.376</a></b></h3>
 </div>
 <div class="layui-card-body">
 <div class="layui-word-aux">
@@ -14397,7 +14593,7 @@ public class SysLoggerAspect {
 
             laypage.render({
                 elem: 'divpager-1'
-                , count: 62
+                , count: 64
                 , curr: 1
                 , limit: __PageSize
                 , jump: function (obj, first) {
@@ -14426,11 +14622,11 @@ public class SysLoggerAspect {
                 , jump: function (obj, first) {
                     page = obj.curr;
                     size = obj.limit;
-                    for(i = 63;i <= obj.count + 62;i++){
+                    for(i = 65;i <= obj.count + 64;i++){
                         document.getElementById(i).style.display="none";
                     }
-                    for (i = size * (page - 1) + 63;i <= size* page + 62;i++){
-                        if(i <= obj.count + 62){
+                    for (i = size * (page - 1) + 65;i <= size* page + 64;i++){
+                        if(i <= obj.count + 64){
                             document.getElementById(i).style.display = "block";
                         }
                     }
@@ -14447,11 +14643,11 @@ public class SysLoggerAspect {
                 , jump: function (obj, first) {
                     page = obj.curr;
                     size = obj.limit;
-                    for(i = 74;i <= obj.count + 73;i++){
+                    for(i = 76;i <= obj.count + 75;i++){
                         document.getElementById(i).style.display="none";
                     }
-                    for (i = size * (page - 1) + 74;i <= size* page + 73;i++){
-                        if(i <= obj.count + 73){
+                    for (i = size * (page - 1) + 76;i <= size* page + 75;i++){
+                        if(i <= obj.count + 75){
                             document.getElementById(i).style.display = "block";
                         }
                     }
@@ -14468,11 +14664,11 @@ public class SysLoggerAspect {
                 , jump: function (obj, first) {
                     page = obj.curr;
                     size = obj.limit;
-                    for(i = 108;i <= obj.count + 107;i++){
+                    for(i = 110;i <= obj.count + 109;i++){
                         document.getElementById(i).style.display="none";
                     }
-                    for (i = size * (page - 1) + 108;i <= size* page + 107;i++){
-                        if(i <= obj.count + 107){
+                    for (i = size * (page - 1) + 110;i <= size* page + 109;i++){
+                        if(i <= obj.count + 109){
                             document.getElementById(i).style.display = "block";
                         }
                     }
